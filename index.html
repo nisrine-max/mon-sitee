@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>straw. la paille active</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap">
+<style>
+/* Layout: one house, five rooms. The master brand (logo, striped straw, micro-beads, pack shape, mono labels) never changes;
+   each range swaps palette, display face, photo frame and tone of voice through tokens set on body[data-range]. */
+:root{
+  --sans:'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,Menlo,monospace;
+  /* range signatures: the four colours of the master stripe */
+  --s-mini:#F5B700; --s-active:#D98A6C; --s-luna:#C8475A; --s-silver:#2E9C9A;
+  /* home (master) palette */
+  --bg:#F4F2EF; --tile:#E9E4DD; --ink:#1F1C19; --muted:#5E5650; --line:#D6CFC6; --on-ink:#F4F2EF;
+  --sig:var(--ink); --a1:var(--s-mini); --a2:var(--s-active); --a3:var(--s-luna); --a4:var(--s-silver);
+  --disp:'Instrument Serif',Georgia,serif; --disp-st:italic; --disp-w:400; --disp-ls:-.01em; --disp-fvs:normal;
+  --r:6px; --ph-r:6px; --btn-r:999px; --err:#A1402A;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#161412; --tile:#221E1B; --ink:#EFEBE6; --muted:#A99F96; --line:#3A342F; --on-ink:#161412; --err:#E8866E; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161412; --tile:#221E1B; --ink:#EFEBE6; --muted:#A99F96; --line:#3A342F; --on-ink:#161412; --err:#E8866E; color-scheme:dark}
+
+/* ---- range palettes (light) ---- */
+body[data-range="mini"]{--bg:#FFF7E3; --tile:#FFEAB3; --ink:#1E2A44; --muted:#4E5873; --line:#EDD594; --on-ink:#FFF7E3; --sig:#F2603D;
+  --a1:#F2603D; --a2:#FFC531; --a3:#57C29A; --a4:#5AAEE8;
+  --disp:'Lilita One',var(--sans); --disp-st:normal; --disp-w:400; --disp-ls:0; --r:22px; --ph-r:28px}
+body[data-range="active"]{--bg:#F3F1EE; --tile:#E7E2DB; --ink:#1F1C19; --muted:#5E5650; --line:#D3CCC3; --on-ink:#F3F1EE; --sig:var(--s-active);
+  --a1:#EBB9A2; --a2:#BFD8C2; --a3:#E8B8C4; --a4:#CBC0DC; --r:4px; --ph-r:4px}
+body[data-range="luna"]{--bg:#F6E7E2; --tile:#EED3CB; --ink:#4A1626; --muted:#7D4A55; --line:#E2BDB3; --on-ink:#F6E7E2; --sig:var(--s-luna);
+  --a1:#C8475A; --a2:#E9A3A6; --a3:#F2A65A; --a4:#8C4A6B;
+  --disp:'Bodoni Moda',Didot,Georgia,serif; --disp-st:italic; --disp-w:500; --disp-ls:-.02em; --r:2px; --ph-r:999px 999px 2px 2px}
+body[data-range="silver"]{--bg:#F7E9DA; --tile:#EFD5BC; --ink:#3A2216; --muted:#7A5643; --line:#E0C2A5; --on-ink:#F7E9DA; --sig:var(--s-silver);
+  --a1:#2E9C9A; --a2:#E9853A; --a3:#F08DB0; --a4:#6F8FD8;
+  --disp:'Fraunces',Georgia,serif; --disp-st:italic; --disp-w:650; --disp-ls:-.02em; --disp-fvs:"SOFT" 100,"WONK" 1; --r:18px; --ph-r:6px}
+
+/* ---- range palettes (dark): only neutrals move, pack colours stay ---- */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) body[data-range="mini"]{--bg:#121829; --tile:#1D253C; --ink:#FFF3D3; --muted:#B8BFD3; --line:#313D5C; --on-ink:#121829}
+  :root:not([data-theme="light"]) body[data-range="active"]{--bg:#171513; --tile:#221E1B; --ink:#EFEBE6; --muted:#A99F96; --line:#3A342F; --on-ink:#171513}
+  :root:not([data-theme="light"]) body[data-range="luna"]{--bg:#1C0E13; --tile:#2B171F; --ink:#F6E2DC; --muted:#CDA3AB; --line:#4A2A33; --on-ink:#1C0E13}
+  :root:not([data-theme="light"]) body[data-range="silver"]{--bg:#1D1410; --tile:#2B1F18; --ink:#F7E9DA; --muted:#C9A992; --line:#4A3527; --on-ink:#1D1410}
+}
+:root[data-theme="dark"] body[data-range="mini"]{--bg:#121829; --tile:#1D253C; --ink:#FFF3D3; --muted:#B8BFD3; --line:#313D5C; --on-ink:#121829}
+:root[data-theme="dark"] body[data-range="active"]{--bg:#171513; --tile:#221E1B; --ink:#EFEBE6; --muted:#A99F96; --line:#3A342F; --on-ink:#171513}
+:root[data-theme="dark"] body[data-range="luna"]{--bg:#1C0E13; --tile:#2B171F; --ink:#F6E2DC; --muted:#CDA3AB; --line:#4A2A33; --on-ink:#1C0E13}
+:root[data-theme="dark"] body[data-range="silver"]{--bg:#1D1410; --tile:#2B1F18; --ink:#F7E9DA; --muted:#C9A992; --line:#4A3527; --on-ink:#1D1410}
+
+*{box-sizing:border-box}
+html{scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.55;-webkit-font-smoothing:antialiased;transition:background-color .5s,color .5s}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
+.label{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-weight:500;letter-spacing:-.035em;text-wrap:balance;margin:0}
+.d{font-family:var(--disp);font-style:var(--disp-st);font-weight:var(--disp-w);letter-spacing:var(--disp-ls);font-variation-settings:var(--disp-fvs)}
+section{padding-block:clamp(56px,8vw,112px)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 24px;flex-wrap:wrap;margin-bottom:40px}
+.head h2{font-size:clamp(2.1rem,4.6vw,4rem);line-height:1}
+.head p{margin:0;color:var(--muted);max-width:46ch}
+.alt{background:var(--tile)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 26px;border-radius:var(--btn-r);background:var(--ink);color:var(--on-ink);border:1px solid var(--ink);font:500 .95rem var(--sans);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.sm{min-height:40px;padding:0 18px;font-size:.875rem}
+.btn:hover{opacity:.86}
+.mock{display:inline-block;font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;border:1px dashed var(--muted);color:var(--muted);padding:4px 8px;border-radius:999px}
+
+/* ---- master motifs ---- */
+.stripe{height:10px;background:repeating-linear-gradient(-45deg,var(--a1) 0 14px,var(--bg) 14px 20px,var(--a2) 20px 34px,var(--bg) 34px 40px,var(--a3) 40px 54px,var(--bg) 54px 60px,var(--a4) 60px 74px,var(--bg) 74px 80px)}
+.beads{display:inline-flex;gap:5px;vertical-align:middle}
+.beads i{width:9px;height:9px;border-radius:50%;background:var(--c,var(--ink))}
+.logo{font-weight:600;font-size:1.75rem;letter-spacing:-.05em;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:baseline;gap:.3em}
+.logo .dot{color:var(--sig);transition:color .5s}
+.logo .sfx{font-size:.8em;letter-spacing:var(--disp-ls)}
+body[data-range="home"] .logo .dot{animation:dot 8s steps(1) infinite}
+@keyframes dot{0%{color:var(--s-mini)}25%{color:var(--s-active)}50%{color:var(--s-luna)}75%{color:var(--s-silver)}}
+
+/* ---- top ---- */
+.bar{background:var(--ink);color:var(--on-ink);text-align:center;font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);transition:background-color .5s}
+nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+.rlinks{display:flex;gap:6px;flex-wrap:wrap}
+.rlinks a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:.9375rem;padding:8px 14px;border-radius:999px;color:var(--muted)}
+.rlinks a i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.rlinks a:hover{color:var(--ink)}
+.rlinks a[aria-current="page"]{background:var(--tile);color:var(--ink)}
+.menu{display:none}
+
+/* ---- photos ---- */
+.ph{position:relative;background:var(--tile);overflow:hidden;max-width:100%;border-radius:var(--ph-r)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph .tag{position:absolute;left:14px;bottom:14px;background:var(--bg);color:var(--ink);font-family:var(--mono);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+body[data-range="silver"] .ph{border:10px solid #FFFBF4;box-shadow:0 18px 30px -18px rgba(58,34,22,.5)}
+body[data-range="silver"] .mood figure:nth-child(odd) .ph{transform:rotate(-1.6deg)}
+body[data-range="silver"] .mood figure:nth-child(even) .ph{transform:rotate(1.4deg)}
+
+/* ---- packaging objects (shared architecture) ---- */
+.box{position:relative;aspect-ratio:5/8;width:100%;container-type:inline-size;border-radius:calc(var(--r) * .4 + 3px);color:var(--pk,#2A2420);
+  background:linear-gradient(100deg,rgba(255,255,255,.28),rgba(255,255,255,0) 22%,rgba(0,0,0,0) 78%,rgba(0,0,0,.10)),var(--c);
+  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 22px 30px -18px rgba(31,28,25,.45)}
+.box::before{content:"";position:absolute;left:0;right:0;top:0;height:7%;border-bottom:1px solid currentColor;opacity:.25;background:rgba(255,255,255,.4);border-radius:inherit;border-bottom-left-radius:0;border-bottom-right-radius:0}
+.box .f{position:absolute;inset:11% 9% 7%;display:flex;flex-direction:column}
+.box .b{font:600 17cqw/1 var(--sans);letter-spacing:-.06em}
+.box .rg{font:400 5cqw/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-top:3cqw;opacity:.8}
+.box .n{font-family:var(--disp);font-style:var(--disp-st);font-weight:var(--disp-w);font-variation-settings:var(--disp-fvs);font-size:13cqw;line-height:1;margin-top:auto;letter-spacing:var(--disp-ls)}
+.box .t{font:400 5.2cqw/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-top:4cqw;opacity:.85}
+.box .ft{display:flex;justify-content:space-between;gap:4px;border-top:1px solid currentColor;padding-top:3.5cqw;margin-top:6cqw;font:400 4.6cqw/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.box .ft span{opacity:.85}
+body[data-range="silver"] .box .t,body[data-range="silver"] .box .ft{font-size:6.2cqw}
+.box .str{position:absolute;right:9%;top:13%;width:5cqw;height:28cqw;border-radius:99px;background:repeating-linear-gradient(-45deg,currentColor 0 2cqw,transparent 2cqw 4cqw);opacity:.55}
+.sachet{position:relative;width:100%;aspect-ratio:1/5.2;container-type:inline-size;background:#FBF9F6;border-radius:2px;box-shadow:0 18px 24px -16px rgba(31,28,25,.45);color:#2A2420}
+.sachet::before,.sachet::after{content:"";position:absolute;left:0;right:0;height:5%;background:repeating-linear-gradient(90deg,#E9E3DB 0 3px,#FBF9F6 3px 6px)}
+.sachet::before{top:0}.sachet::after{bottom:0}
+.sachet .band{position:absolute;left:0;right:0;top:40%;height:22%;background:var(--c);color:var(--pk);display:flex;align-items:center;justify-content:center}
+.sachet .day{position:absolute;left:0;right:0;top:70%;text-align:center;font:400 22cqw/1 var(--mono);text-transform:uppercase}
+.sachet .band span{writing-mode:vertical-rl;transform:rotate(180deg);font:600 30cqw/1 var(--sans);letter-spacing:-.05em}
+.straw{position:relative;width:100%;aspect-ratio:1/18;border-radius:999px;background:linear-gradient(90deg,#d6cfc5,#fbf9f6 35%,#efe9e2 70%,#cbc3b8);display:flex;flex-direction:column;align-items:center;gap:7%;padding-top:50%}
+.straw i{width:52%;aspect-ratio:1;border-radius:50%;background:var(--c);filter:saturate(1.3) brightness(.95)}
+.set{display:flex;align-items:flex-end;justify-content:center;gap:5%}
+.set .box{width:46%}.set .sachet{width:11%}.set .straw{width:3.4%;transform:rotate(5deg);transform-origin:bottom}
+
+/* =================== HOME =================== */
+.hhero{padding-block:clamp(28px,4vw,56px) 0}
+.hhero .top{display:grid;grid-template-columns:1.25fr 1fr;gap:24px clamp(24px,5vw,72px);align-items:end;margin-bottom:clamp(28px,4vw,48px)}
+.hhero h1{font-size:clamp(3.2rem,8vw,7.5rem);line-height:.9}
+.hhero p{margin:0;color:var(--muted);font-size:1.125rem;max-width:44ch}
+.hhero .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.rooms{display:flex;gap:10px;height:clamp(440px,58vw,620px)}
+.room{position:relative;flex:1 1 0;min-width:0;border-radius:8px;overflow:hidden;text-decoration:none;color:#fff;background:var(--c);transition:flex-grow .6s cubic-bezier(.2,.7,.2,1)}
+.room img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.room::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.62))}
+.room .cap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:20px;display:flex;flex-direction:column;gap:8px}
+.room .cap .rn{font-weight:600;font-size:clamp(1.6rem,2.6vw,2.4rem);letter-spacing:-.05em;line-height:1;white-space:nowrap}
+.room .cap .rn em{font-style:normal;font-weight:400}
+.room .cap .age{font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+.room .cap .more{font-size:.9375rem;max-width:30ch;opacity:0;max-height:0;transition:opacity .4s,max-height .5s}
+.room .rule{position:absolute;left:0;right:0;top:0;height:8px;z-index:1;background:repeating-linear-gradient(-45deg,var(--c) 0 12px,rgba(255,255,255,.85) 12px 18px)}
+.room:hover,.room:focus-visible{flex-grow:2.2}
+.room:hover img,.room:focus-visible img{transform:scale(1.04)}
+.room:hover .more,.room:focus-visible .more{opacity:1;max-height:6em}
+.room:focus-visible{outline-offset:4px}
+.f-mini{font-family:'Lilita One',var(--sans)}
+.f-active{font-family:'Instrument Serif',Georgia,serif;font-style:italic}
+.f-luna{font-family:'Bodoni Moda',Didot,serif;font-style:italic;font-weight:500}
+.f-silver{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:650;font-variation-settings:"SOFT" 100,"WONK" 1}
+
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line)}
+.facts div{padding:22px clamp(14px,2vw,28px);border-right:1px solid var(--line);font-size:.9375rem;min-width:0}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font-weight:500}
+
+.lineup{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.lu{display:flex;flex-direction:column;gap:14px;min-width:0;text-decoration:none}
+.lu .stage{background:var(--tile);border-radius:8px;padding:12% 10% 10%;display:flex;align-items:flex-end;justify-content:center;gap:6%;aspect-ratio:1/1.05}
+.lu .stage .box{width:31%}
+.lu .stage .box:nth-child(2){width:36%}
+.lu .stage .box:nth-child(1){transform:translateY(-6%)}
+.lu h3{font-size:1.5rem;display:flex;align-items:baseline;gap:.3em}
+.lu p{margin:0;color:var(--muted);font-size:.9375rem}
+.lu .go{font-size:.875rem;text-decoration:underline;text-underline-offset:3px}
+@media (prefers-reduced-motion:no-preference){.lu .box{transition:transform .5s cubic-bezier(.2,.7,.2,1)}.lu:hover .box:nth-child(2){transform:translateY(-8px) rotate(-3deg)}}
+
+.family{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(24px,5vw,72px);align-items:start}
+.family .ph{aspect-ratio:4/5}
+.day{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.day li{display:grid;grid-template-columns:64px 18px 1fr auto;gap:12px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.day time{font-variant-numeric:tabular-nums;font-weight:500}
+.day .bd{width:12px;height:12px;border-radius:50%;background:var(--c);align-self:center}
+.day .who{min-width:0}
+.day .who b{font-weight:500}
+.day .who span{color:var(--muted)}
+.day .rg{font-family:var(--mono);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.gens{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:20px 0 28px}
+.gens div{border-top:4px solid var(--c);padding-top:10px;min-width:0}
+.gens b{display:block;font-weight:500}
+.gens span{font-size:.875rem;color:var(--muted)}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;border-top:1px solid var(--line);padding-top:32px}
+.steps h3{font-size:1.5rem;margin:10px 0 8px}
+.steps p{margin:0;color:var(--muted);max-width:34ch}
+.tbl{overflow-x:auto}
+.cmp{width:100%;border-collapse:collapse;font-size:.9375rem;min-width:640px}
+.cmp th,.cmp td{padding:16px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp thead th{font-family:var(--mono);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.cmp tbody th{font-weight:500}
+.cmp .us{background:var(--tile)}
+.cmp thead .us{color:var(--ink)}
+
+.story{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(28px,6vw,96px);align-items:start}
+.st-left{position:sticky;top:96px;display:flex;flex-direction:column;gap:24px}
+.st-left h2{font-size:clamp(2.4rem,5vw,4.75rem);line-height:.96}
+.me{margin:0;display:flex;align-items:center;gap:18px}
+.me img{width:96px;height:96px;border-radius:50%;object-fit:cover;flex:none}
+.me strong{display:block;font-weight:500;font-size:1.2rem}
+.me span{color:var(--muted);font-size:.875rem}
+.st-right{min-width:0;max-width:62ch}
+.st-right p{margin:0 0 18px;font-size:1.0625rem;color:var(--muted)}
+.st-right p strong{color:var(--ink);font-weight:500}
+.st-right .lead{font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.2;letter-spacing:-.02em;color:var(--ink)}
+.st-right .sign{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:2.75rem;color:var(--ink);margin-top:8px}
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.values div{background:var(--tile);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.values b{font-weight:500}
+.values span{color:var(--muted);font-size:.875rem}
+
+.wl{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end}
+.wl h2{font-size:clamp(2.75rem,6vw,5.5rem);line-height:.95}
+form{display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>label,fieldset legend{font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+fieldset legend{margin-bottom:8px;padding:0}
+.chk{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;cursor:pointer;font-size:.9375rem}
+.chk input{accent-color:var(--ink)}
+.chk i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+input[type=email]{min-height:52px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:0 20px;font:400 1rem var(--sans)}
+.err{color:var(--err);font-size:.875rem;min-height:1em;margin:0}
+.ok{padding:28px;border:1px solid var(--line);border-radius:6px}
+.ok strong{display:block;font-size:1.375rem;font-weight:500;margin-bottom:6px}
+details{border-top:1px solid var(--line);padding:20px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font-size:1.2rem;font-weight:500;letter-spacing:-.02em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:300}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);max-width:62ch;margin:12px 0 0}
+
+/* =================== RANGE VIEWS (shared) =================== */
+.rhero{display:grid;grid-template-columns:1.05fr 1fr;gap:0;border-bottom:1px solid var(--line)}
+.rhero .ph{aspect-ratio:4/5;border-radius:0}
+body[data-range="luna"] .rhero .ph{border-radius:0 0 0 0}
+.rhero-copy{display:flex;flex-direction:column;justify-content:flex-end;gap:24px;padding:clamp(28px,5vw,72px)}
+.rhero h1{font-size:clamp(3rem,7vw,6.75rem);line-height:.92}
+.rhero h1 .d{display:block}
+.rhero p{max-width:42ch;font-size:1.125rem;color:var(--muted);margin:0}
+.rhero .row{display:flex;gap:12px;flex-wrap:wrap}
+.hero-mini{display:flex;gap:10px;align-items:flex-end}
+.hero-mini .box{width:56px}
+.rtag{display:inline-flex;align-items:center;gap:10px}
+body[data-range="mini"] .rhero h1{letter-spacing:-.02em}
+body[data-range="mini"] .rhero h1 .d{font-size:1.12em;line-height:.95;color:var(--a1)}
+body[data-range="mini"] .btn{border-radius:16px;box-shadow:0 4px 0 color-mix(in srgb,var(--ink) 35%,transparent)}
+body[data-range="mini"] .btn:active{transform:translateY(3px);box-shadow:none}
+body[data-range="luna"] .rhero h1 .d{color:var(--a1)}
+body[data-range="silver"] .rhero h1 .d{color:var(--a2)}
+body[data-range="luna"] .rhero{grid-template-columns:1fr 1fr}
+body[data-range="luna"] .rhero .ph{margin:clamp(16px,3vw,40px) 0 0 clamp(16px,3vw,40px);border-radius:999px 999px 0 0;aspect-ratio:3/4}
+body[data-range="silver"] .rhero .ph{margin:clamp(16px,3vw,40px);border-radius:6px;transform:rotate(-1.5deg)}
+body[data-range="mini"] .rhero .ph{margin:clamp(16px,3vw,40px);border-radius:40px}
+
+.shop{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:12px;min-width:0}
+.card .stage{background:var(--tile);border-radius:var(--r);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;padding:14%;position:relative}
+.card .stage .box{width:64%}
+.card .pill{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;background:var(--bg);padding:5px 9px;border-radius:999px}
+.card .tp{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.card h3{font-size:1.5rem}
+.card .price{font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
+.card p{margin:0;color:var(--muted);font-size:.875rem}
+.card .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+@media (prefers-reduced-motion:no-preference){.card .box{transition:transform .5s cubic-bezier(.2,.7,.2,1)}.card:hover .box{transform:translateY(-8px) rotate(-2deg)}}
+
+.fiche-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);align-items:start}
+.fiche .visual{background:var(--bg);border-radius:var(--r);padding:10% 12% 8%;aspect-ratio:1/1;display:flex;align-items:flex-end;justify-content:center;max-width:100%}
+.fiche .visual .set{width:100%}
+.picker,.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.picker{margin-bottom:28px}
+.tabs{margin-bottom:18px}
+.picker button,.tabs button,.seg button{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font:400 .95rem var(--sans);cursor:pointer}
+.picker button[aria-pressed="true"],.tabs button[aria-selected="true"],.seg button[aria-pressed="true"]{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.picker button i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:8px}
+.fiche h3{font-size:clamp(2.5rem,4.6vw,4rem);line-height:1}
+.fiche .sub{color:var(--muted);margin:10px 0 18px;font-size:1.0625rem}
+.spec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--line);margin-bottom:24px}
+.spec div{padding:14px 12px 14px 0;min-width:0}
+.spec div+div{padding-left:14px;border-left:1px solid var(--line)}
+.spec b{display:block;font-weight:500;font-size:1.0625rem}
+.panel{min-height:220px}
+.panel table{width:100%;border-collapse:collapse;font-size:.9375rem}
+.panel th{text-align:left;font-family:var(--mono);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:8px 0;border-bottom:1px solid var(--line)}
+.panel td{padding:11px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.panel td:not(:first-child),.panel th:not(:first-child){text-align:right}
+.panel ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px}
+.panel .note{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.fiche .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+
+.offers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.offer{border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.offer.hl{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.offer.hl .label,.offer.hl p{color:var(--on-ink);opacity:.78}
+.offer .amt{font-size:3rem;font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.offer .amt small{font-size:1rem;font-weight:400;letter-spacing:0}
+.offer p{margin:0;color:var(--muted);font-size:.9375rem}
+.offer .unit{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em}
+.offer .btn{margin-top:auto}
+.offer.hl .btn{background:var(--on-ink);color:var(--ink);border-color:var(--on-ink)}
+
+.mood{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.mood figure{margin:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.mood .ph{aspect-ratio:3/4}
+.mood figcaption strong{display:block;font-weight:500;font-size:1.2rem}
+.mood figcaption span{color:var(--muted);font-size:.875rem}
+.ugc{aspect-ratio:3/4;border:1.5px dashed var(--muted);border-radius:var(--ph-r);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px;color:var(--muted)}
+.ugc b{font-family:var(--disp);font-style:var(--disp-st);font-size:2rem;color:var(--ink);font-weight:400}
+
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rev{border-top:1px solid var(--ink);padding-top:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.rev .st{letter-spacing:.2em;font-size:.875rem}
+.rev q{font-size:1.2rem;letter-spacing:-.01em;line-height:1.4;quotes:none}
+.rev .who{display:flex;justify-content:space-between;gap:10px;font-size:.875rem;color:var(--muted)}
+
+.others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.other{position:relative;display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:10px;text-decoration:none;min-width:0}
+.other .ph{aspect-ratio:1;border-radius:6px;border:0!important;box-shadow:none!important;transform:none!important}
+.other b{display:block;font-weight:600;font-size:1.35rem;letter-spacing:-.05em}
+.other span{color:var(--muted);font-size:.875rem}
+.other:hover{border-color:var(--ink)}
+
+/* ---- mini: sticker chart ---- */
+.chart{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(24px,5vw,72px);align-items:center}
+.chart h2{font-size:clamp(2.4rem,5vw,4.25rem);line-height:.95}
+.chart p{color:var(--muted);max-width:44ch}
+.board{background:var(--bg);border-radius:28px;padding:clamp(18px,3vw,32px);border:3px solid var(--ink)}
+.board-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.board-top b{font-family:'Lilita One',var(--sans);font-weight:400;font-size:1.75rem}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.days button{aspect-ratio:1/1.35;border:2px dashed var(--line);border-radius:18px;background:transparent;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:8px 2px;font:500 .75rem var(--mono);text-transform:uppercase;letter-spacing:.06em;min-width:0}
+.days button .stk{width:78%;aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;line-height:1;color:var(--ink);background:transparent;transform:scale(.6);opacity:.25;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
+.days button[aria-pressed="true"]{border-style:solid;border-color:var(--ink)}
+.days button[aria-pressed="true"] .stk{background:var(--c);transform:scale(1) rotate(var(--rot));opacity:1;color:#1E2A44}
+.bravo{margin:16px 0 0;font-weight:500;min-height:1.6em}
+
+/* ---- active: day routine ---- */
+.routine{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.moment{display:flex;flex-direction:column;gap:14px;min-width:0}
+.moment .stage{background:var(--tile);border-radius:4px;padding:28px 22% 24px;display:flex;justify-content:center}
+.moment .time{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--ink);padding-top:12px}
+.moment .time b{font-weight:500;font-size:1.75rem;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.moment h3{font-size:1.375rem}
+.moment p{margin:0;color:var(--muted);font-size:.9375rem}
+
+/* ---- luna: cycle wheel ---- */
+.cycle{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,5vw,80px);align-items:center}
+.wheel{width:100%;max-width:520px;margin:0 auto;aspect-ratio:1}
+.wheel svg{width:100%;height:100%;overflow:visible}
+.wheel path{cursor:pointer;stroke:var(--bg);stroke-width:1.5;transition:opacity .2s}
+.wheel path:hover{opacity:.8}
+.wheel path:focus{outline:none}
+.wheel path:focus-visible,.wheel path[aria-pressed="true"]{stroke:var(--ink);stroke-width:2.5}
+.wheel text{fill:var(--ink);font-family:var(--mono)}
+.wheel .big{font-family:'Bodoni Moda',Didot,serif;font-style:italic;font-size:30px}
+.phase h3{font-size:clamp(2rem,4vw,3.25rem);line-height:1;margin:8px 0 14px}
+.phase p{color:var(--muted);max-width:48ch;margin:0 0 18px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px;font-size:.875rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.reco{display:flex;gap:16px;align-items:center;border:1px solid var(--line);border-radius:999px 999px 999px 999px;padding:10px 22px 10px 10px;max-width:max-content}
+.reco .box{width:44px;flex:none}
+.reco b{font-weight:500}
+.life{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--ink);margin-top:48px}
+.life div{padding:16px 16px 0 0;min-width:0}
+.life div+div{padding-left:16px;border-left:1px solid var(--line)}
+.life b{display:block;font-family:'Bodoni Moda',Didot,serif;font-style:italic;font-weight:500;font-size:1.5rem}
+.life span{color:var(--muted);font-size:.875rem}
+
+/* ---- silver: hydration + text size ---- */
+.sizes{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+.seg{display:inline-flex;gap:6px}
+.seg button{min-width:52px;padding:0 14px;font-weight:600}
+.seg button:nth-child(2){font-size:1.1rem}.seg button:nth-child(3){font-size:1.3rem}
+.hydro{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(24px,5vw,72px);align-items:center}
+.hydro .ph{aspect-ratio:4/5}
+.hydro h2{font-size:clamp(2.4rem,5vw,4.25rem);line-height:.95}
+.hydro p{color:var(--muted);max-width:46ch;font-size:1.0625rem}
+.glasses{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:24px 0 14px;max-width:520px}
+.glasses button{position:relative;aspect-ratio:3/4.4;border:2.5px solid var(--ink);border-top-width:1px;border-radius:4px 4px 14px 14px;background:transparent;cursor:pointer;overflow:hidden;padding:0}
+.glasses button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:0;background:var(--a1);transition:height .45s cubic-bezier(.2,.7,.2,1)}
+.glasses button[aria-pressed="true"]::after{height:82%}
+.glasses button span{position:absolute;inset:auto 0 6px;z-index:1;font:600 .875rem var(--mono);color:var(--ink)}
+.glasses button[aria-pressed="true"] span{color:#FFF6EC}
+.hcount{font-size:1.375rem;font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+
+footer{padding-block:40px 56px}
+footer .wrap{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:end}
+footer .logo{font-size:4.5rem;line-height:.8}
+footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
+.ftl{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.9375rem}
+
+@media (max-width:1080px){
+  .rlinks{display:none}
+  .menu{display:flex}
+  .shop,.lineup{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .routine{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .hhero .top,.rhero,.fiche-grid,.wl,.family,.story,.chart,.cycle,.hydro{grid-template-columns:1fr}
+  body[data-range="luna"] .rhero{grid-template-columns:1fr}
+  body[data-range="luna"] .rhero .ph{margin:16px 16px 0}
+  .st-left{position:static}
+  .rooms{display:grid;grid-template-columns:1fr 1fr;height:auto}
+  .room{aspect-ratio:3/4}
+  .room .more{display:none}
+  .offers,.revs,.others,.mood{grid-template-columns:1fr 1fr}
+  .life{grid-template-columns:1fr 1fr}
+  .life div:nth-child(3){border-left:0;padding-left:0}
+}
+@media (max-width:600px){
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:nth-child(2){border-right:0}
+  .facts div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .offers,.revs,.others,.steps,.values,.routine{grid-template-columns:1fr}
+  .mood{grid-template-columns:repeat(3,minmax(74%,1fr));overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+  .mood figure{scroll-snap-align:start}
+  .shop{gap:12px}
+  .card h3{font-size:1.2rem}
+  .card .acts .ghost{display:none}
+  .lineup{grid-template-columns:1fr 1fr;gap:12px}
+  .lu h3{font-size:1.2rem}
+  .gens{grid-template-columns:1fr 1fr}
+  .day li{grid-template-columns:52px 14px 1fr}
+  .day .rg{grid-column:3}
+  .spec{grid-template-columns:1fr}
+  .spec div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  footer .wrap{grid-template-columns:1fr}
+  .days{gap:4px}
+  .days button{border-radius:12px;font-size:.625rem}
+  .glasses{gap:8px}
+}
+@media (max-width:600px){#navCta{display:none}nav.top .logo{font-size:1.5rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body data-range="home">
+
+<div class="bar">maquette projet · prix, avis et compositions illustratifs</div>
+<nav class="top" aria-label="Navigation principale">
+  <div class="wrap">
+    <a class="logo" href="#accueil" aria-label="straw. accueil"><span>straw<span class="dot">.</span></span><span class="sfx d" id="logoSfx"></span></a>
+    <div class="rlinks" id="rlinks">
+      <a href="#mini" style="--c:var(--s-mini)"><i></i>kids</a>
+      <a href="#active" style="--c:var(--s-active)"><i></i>femme active</a>
+      <a href="#luna" style="--c:var(--s-luna)"><i></i>santé féminine</a>
+      <a href="#silver" style="--c:var(--s-silver)"><i></i>senior</a>
+    </div>
+    <div style="display:flex;gap:8px">
+      <label class="menu" for="rangeSel"><span class="label" style="position:absolute;left:-9999px">Choisir une gamme</span>
+        <select id="rangeSel" style="min-height:40px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:0 12px;font:400 .875rem var(--sans)">
+          <option value="accueil">les gammes</option><option value="mini">kids</option><option value="active">femme active</option><option value="luna">santé féminine</option><option value="silver">senior</option>
+        </select>
+      </label>
+      <a class="btn sm" href="#accueil-liste" id="navCta">la liste</a>
+    </div>
+  </div>
+</nav>
+<div class="stripe" aria-hidden="true"></div>
+
+<main>
+<!-- =========================== ACCUEIL =========================== -->
+<div class="view" id="v-home" data-view="home">
+  <header class="hhero">
+    <div class="wrap">
+      <div class="top">
+        <div>
+          <span class="label">la paille active · 4 gammes · de 4 à 104 ans</span>
+          <h1 style="margin-top:16px">une gorgée <span class="d">pour chaque âge.</span></h1>
+        </div>
+        <div>
+          <p>Des micro-billes d'actifs dans une paille, libérées à chaque gorgée. Pour les enfants, les femmes actives, la santé féminine et les seniors. Un seul geste pour toute la famille : boire.</p>
+          <div class="row"><a class="btn" href="#accueil-gammes">voir les 4 gammes</a><a class="btn ghost" href="#accueil-famille">une journée straw.</a></div>
+        </div>
+      </div>
+      <div class="rooms" id="rooms">
+        <a class="room" href="#mini" style="--c:var(--s-mini)"><span class="rule"></span><img src="assets/img/mini-limonade.jpg" alt="Quatre enfants boivent une limonade avec des pailles rayées" style="object-position:40% 40%"><span class="cap"><span class="age">kids · 4 à 11 ans</span><span class="rn">straw. <em class="f-mini">mini</em></span><span class="more">Les vitamines à la paille, sans sucre ajouté, avec un tableau de stickers.</span></span></a>
+        <a class="room" href="#active" style="--c:var(--s-active)"><span class="rule"></span><img src="assets/img/active-hero.jpg" alt="Femme buvant un jus orange avec une paille" style="object-position:center 30%"><span class="cap"><span class="age">femme active · matin → soir</span><span class="rn">straw. <em class="f-active">active</em></span><span class="more">Matin, avant le sport, après le sport, sommeil. Une paille par moment.</span></span></a>
+        <a class="room" href="#luna" style="--c:var(--s-luna)"><span class="rule"></span><img src="assets/img/luna-fleurs.jpg" alt="Quatre femmes entourées de fleurs roses" style="object-position:center 30%"><span class="cap"><span class="age">santé féminine · cycle → ménopause</span><span class="rn">straw. <em class="f-luna">luna</em></span><span class="more">Règles, syndrome prémenstruel, projet bébé, ménopause.</span></span></a>
+        <a class="room" href="#silver" style="--c:var(--s-silver)"><span class="rule"></span><img src="assets/img/silver-plage.jpg" alt="Homme âgé en lunettes roses buvant à la paille sur la plage" style="object-position:center 25%"><span class="cap"><span class="age">senior · 65 ans et plus</span><span class="rn">straw. <em class="f-silver">silver</em></span><span class="more">Hydratation, tonus, mobilité, vision. Rien à avaler.</span></span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap" style="margin-top:clamp(28px,4vw,48px)">
+    <div class="facts">
+      <div><b>1 paille = 1 dose</b>rien à mesurer, rien à avaler</div>
+      <div><b>16 pailles, 4 gammes</b>chacune son code couleur</div>
+      <div><b>1 étui = 1 semaine</b>7 pailles, lun → dim</div>
+      <div><b>allégations autorisées</b>registre européen, rien de plus</div>
+    </div>
+  </div>
+
+  <section id="accueil-gammes">
+    <div class="wrap">
+      <div class="head"><h2>quatre gammes, <span class="d">un seul objet.</span></h2><p>Le même étui, la même paille, les mêmes micro-billes. Chaque gamme a sa couleur, sa typo et ses actifs, dosés pour l'âge et le moment de vie.</p></div>
+      <div class="lineup" id="lineup"></div>
+    </div>
+  </section>
+
+  <section class="alt" id="accueil-famille">
+    <div class="wrap family">
+      <div class="ph"><img src="assets/img/mini-milkshake.jpg" alt="Une mère et son fils partagent un milkshake avec deux pailles rayées" style="object-position:center 60%"><span class="tag">camille & léo · 16:30</span></div>
+      <div style="min-width:0">
+        <span class="label">une journée chez les straw.</span>
+        <h2 style="font-size:clamp(2.1rem,4.4vw,3.75rem);line-height:1;margin-top:12px">quatre générations, <span class="d">une seule paille.</span></h2>
+        <div class="gens">
+          <div style="--c:var(--s-mini)"><b>Léo, 7 ans</b><span>straw. mini</span></div>
+          <div style="--c:var(--s-active)"><b>Camille, 34 ans</b><span>straw. active</span></div>
+          <div style="--c:var(--s-luna)"><b>Nadia, 52 ans</b><span>straw. luna</span></div>
+          <div style="--c:var(--s-silver)"><b>Jean, 79 ans</b><span>straw. silver</span></div>
+        </div>
+        <ol class="day" id="familyDay"></ol>
+        <p class="label" style="margin-top:16px">famille fictive · exemple de routine</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head"><h2>comment ça marche</h2><span class="label">technologie brevetée · [partenaire fabricant]</span></div>
+      <div class="steps">
+        <div><span class="label">étape 1</span><h3>choisis ta boisson</h3><p>Eau, jus, lait, boisson végétale, thé glacé. Froide ou tiède, jamais bouillante.</p></div>
+        <div><span class="label">étape 2</span><h3>bois normalement</h3><p>Le liquide traverse la paille et dissout les micro-billes d'actifs aromatisées.</p></div>
+        <div><span class="label">étape 3</span><h3>la dose est prise</h3><p>Billes disparues = dose complète. La paille s'utilise une seule fois.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>pourquoi une paille ?</h2><p>Parce qu'un complément ne sert à rien s'il reste dans le placard. Le geste compte autant que l'actif.</p></div>
+      <div class="tbl">
+        <table class="cmp">
+          <thead><tr><th></th><th class="us">straw.</th><th>gélules</th><th>poudre en stick</th><th>gummies</th></tr></thead>
+          <tbody>
+            <tr><th>à avaler</th><td class="us">rien, on boit</td><td>1 à 3 gélules</td><td>à diluer</td><td>à mâcher</td></tr>
+            <tr><th>enfants & seniors</th><td class="us">même geste à tout âge</td><td>difficile à avaler</td><td>goût souvent refusé</td><td>sucre, risque de confusion avec un bonbon</td></tr>
+            <tr><th>sucre</th><td class="us">sans sucre ajouté</td><td>non</td><td>souvent</td><td>souvent 2–4 g</td></tr>
+            <tr><th>nomade</th><td class="us">sachet individuel daté</td><td>pilulier</td><td>oui</td><td>pot</td></tr>
+            <tr><th>hydratation</th><td class="us">un verre bu à chaque dose</td><td>une gorgée</td><td>un verre</td><td>aucune</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="accueil-histoire">
+    <div class="wrap story">
+      <div class="st-left">
+        <span class="label">notre histoire</span>
+        <h2>née entre un labo <span class="d">et une cuisine de famille.</span></h2>
+        <figure class="me"><img src="assets/img/active-nisrine.jpg" alt="Portrait de Nisrine Margoum"><figcaption><strong>Nisrine Margoum</strong><span>fondatrice de straw.</span></figcaption></figure>
+      </div>
+      <div class="st-right">
+        <p class="lead">Je m'appelle Nisrine, et mon métier, c'est de plonger dans les actifs.</p>
+        <p>Je suis cheffe de produit en cosmétique dans un groupe international d'ingrédients actifs. Chaque jour, je décortique comment un actif agit, à quelle dose il fonctionne, et comment le traduire en une promesse claire, juste et autorisée. Avant ça, il y a eu un master Biologie-Santé.</p>
+        <p>En écoutant les consommatrices, j'ai toujours entendu la même chose. Les compléments, on les achète pleine de bonnes intentions, puis le pot reste sur l'étagère. Les enfants refusent le sirop, les grands-parents peinent à avaler les gélules, et nous, on oublie. <strong>Le problème n'était pas l'actif. C'était le geste.</strong></p>
+        <p>Alors j'ai cherché un geste que tout le monde fait déjà, à tout âge, dix fois par jour : boire. straw. a commencé avec une routine pour les femmes actives. Elle s'agrandit aujourd'hui pour toute la famille, pensée à Clermont-Ferrand.</p>
+        <p class="sign">Nisrine</p>
+        <div class="values">
+          <div><b>la science d'abord</b><span>Chaque actif à sa dose, adaptée à l'âge. Seulement des allégations autorisées.</span></div>
+          <div><b>le geste avant tout</b><span>Une routine qui tient, parce qu'elle ne demande rien en plus.</span></div>
+          <div><b>la transparence</b><span>Composition complète et dose par paille sur chaque fiche.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="accueil-faq">
+    <div class="wrap" style="max-width:900px">
+      <div class="head"><h2>questions</h2></div>
+      <details><summary>Je peux mélanger plusieurs gammes ?</summary><p>Oui, une paille par produit et par jour au maximum. Évite de cumuler deux pailles riches en vitamine D ou en fer le même jour sans avis médical. Chaque fiche indique ce qu'elle contient.</p></details>
+      <details><summary>Quelle gamme pour qui ?</summary><p>mini pour les enfants de 4 à 11 ans, active pour les femmes de 20 à 45 ans qui veulent une routine du matin au soir, luna pour les grandes phases du corps féminin (règles, grossesse, ménopause), silver à partir de 65 ans.</p></details>
+      <details><summary>Ça change le goût de ma boisson ?</summary><p>Les billes sont aromatisées aux arômes naturels. Le goût est léger et s'accorde avec l'eau, le lait, les jus et le thé. [À valider par tests consommateurs.]</p></details>
+      <details><summary>Et l'environnement ?</summary><p>[Matériau de la paille et filière de fin de vie, à confirmer avec le fabricant avant lancement.]</p></details>
+    </div>
+  </section>
+
+  <section class="alt" id="accueil-liste">
+    <div class="wrap wl">
+      <div><span class="label">accès prioritaire · −15 % sur la 1re commande</span><h2 style="margin-top:14px">be the first <span class="d">to sip.</span></h2></div>
+      <div>
+        <form id="wl-form" novalidate>
+          <fieldset><legend>les gammes qui t'intéressent</legend>
+            <label class="chk" style="--c:var(--s-mini)"><input type="checkbox" id="wl-mini" value="mini"><i></i>kids</label>
+            <label class="chk" style="--c:var(--s-active)"><input type="checkbox" id="wl-active" value="active"><i></i>femme active</label>
+            <label class="chk" style="--c:var(--s-luna)"><input type="checkbox" id="wl-luna" value="luna"><i></i>santé féminine</label>
+            <label class="chk" style="--c:var(--s-silver)"><input type="checkbox" id="wl-silver" value="silver"><i></i>senior</label>
+          </fieldset>
+          <div class="field"><label for="wl-email">email</label><input type="email" id="wl-email" placeholder="toi@exemple.com" autocomplete="email"></div>
+          <p class="err" id="wl-err" aria-live="polite"></p>
+          <button class="btn" type="submit">rejoindre la liste</button>
+        </form>
+        <div class="ok" id="wl-ok" hidden><strong>tu es sur la liste.</strong><span style="color:var(--muted)" id="wl-okmsg">Ton code −15 % arrive au lancement.</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== MINI =========================== -->
+<div class="view" id="v-mini" data-view="mini" hidden>
+  <header class="rhero">
+    <div class="ph"><img src="assets/img/mini-limonade.jpg" alt="Quatre enfants boivent une limonade avec des pailles rayées" style="object-position:40% 40%"><span class="tag">boost. · fraise</span></div>
+    <div class="rhero-copy">
+      <span class="label">straw. mini · kids · 4 à 11 ans</span>
+      <h1>les vitamines, <span class="d">à la paille !</span></h1>
+      <p>Fini la bataille du sirop. Une paille rayée dans le verre de lait, et les vitamines passent toutes seules. Côté parents : doses adaptées aux 4–11 ans, sans sucre ajouté, sans colorant artificiel.</p>
+      <div class="row"><a class="btn" href="#mini-shop">les 4 pailles mini</a><a class="btn ghost" href="#mini-stickers">le tableau de stickers</a></div>
+      <div class="hero-mini" data-heromini="mini" aria-hidden="true"></div>
+    </div>
+  </header>
+  <div class="wrap"><div class="facts" style="border-top:0">
+    <div><b>dès 4 ans</b>sous la surveillance d'un adulte</div>
+    <div><b>0 sucre ajouté</b>arômes naturels de fruits</div>
+    <div><b>billes parties = dose prise</b>les enfants le voient eux-mêmes</div>
+    <div><b>7 stickers par étui</b>un par jour, à coller</div>
+  </div></div>
+  <section id="mini-shop"><div class="wrap">
+    <div class="head"><h2>la bande <span class="d">des 4</span></h2><span class="label">étui semaine · 7 pailles · 8,90 €</span></div>
+    <div class="shop" data-shop="mini"></div>
+  </div></section>
+  <section class="alt fiche" id="mini-fiche"><div class="wrap" data-fiche="mini"></div></section>
+  <section id="mini-stickers"><div class="wrap chart">
+    <div>
+      <span class="label">la signature mini</span>
+      <h2 style="margin-top:12px">un slurp par jour, <span class="d">un sticker.</span></h2>
+      <p>Dans chaque étui, une planche de 7 stickers. L'enfant boit sa paille, voit les billes disparaître, colle son sticker. Au 7e, la semaine est gagnée. La routine devient un jeu, pas une négociation.</p>
+      <p class="label">essaie : touche un jour pour coller son sticker</p>
+    </div>
+    <div class="board">
+      <div class="board-top"><b>le tableau des slurps</b><span class="label" id="stkCount">0 / 7</span></div>
+      <div class="days" id="stkDays"></div>
+      <p class="bravo" id="stkMsg" aria-live="polite"></p>
+    </div>
+  </div></section>
+  <section class="alt"><div class="wrap">
+    <div class="head"><h2>formules mini</h2><span class="label">livraison offerte dès 30 € · sans engagement</span></div>
+    <div class="offers" data-offers="mini"></div>
+  </div></section>
+  <section><div class="wrap">
+    <div class="head"><h2>slurp <span class="d">time</span></h2><span class="mock">moodboard · photos non libres de droits</span></div>
+    <div class="mood">
+      <figure><div class="ph"><img src="assets/img/mini-peinture.jpg" alt="Petite fille qui peint et boit à la paille" style="object-position:center 35%"></div><figcaption><span class="label">mercredi · 15:00</span><strong>atelier peinture</strong><span>focus. dans la gourde, entre deux coups de pinceau.</span></figcaption></figure>
+      <figure><div class="ph"><img src="assets/img/mini-freres.jpg" alt="Deux enfants boivent dans le même verre avec des pailles" style="object-position:center 30%"></div><figcaption><span class="label">16:30</span><strong>le goûter à deux</strong><span>grow. dans le lait, chacun sa paille.</span></figcaption></figure>
+      <figure><div class="ph"><img src="assets/img/mini-oat.jpg" alt="Garçon qui boit une brique de lait d'avoine à la paille" style="object-position:center 30%"></div><figcaption><span class="label">7:45</span><strong>avant l'école</strong><span>boost. dans la boisson végétale du petit-déj.</span></figcaption></figure>
+    </div>
+  </div></section>
+  <section class="alt"><div class="wrap">
+    <div class="head"><h2>les parents en parlent</h2><span class="mock">avis illustratifs · maquette, aucun client réel</span></div>
+    <div class="revs" data-revs="mini"></div>
+  </div></section>
+  <section><div class="wrap" style="max-width:900px">
+    <div class="head"><h2>questions de parents</h2></div>
+    <details><summary>Pourquoi à partir de 4 ans ?</summary><p>Les micro-billes et le format paille demandent de savoir aspirer sans mâcher. Avant 4 ans, demande conseil à ton pédiatre. Toujours sous la surveillance d'un adulte.</p></details>
+    <details><summary>Est-ce que mon enfant peut en prendre deux ?</summary><p>Oui, deux gammes différentes par jour maximum (par exemple boost. le matin et dodo. le soir). Jamais deux pailles de la même gamme le même jour.</p></details>
+    <details><summary>Il y a de la mélatonine dans dodo. ?</summary><p>Non. La mélatonine n'est pas recommandée chez l'enfant sans avis médical. dodo. contient du magnésium, de la camomille et du tilleul, dans un lait tiède : c'est surtout un rituel.</p></details>
+    <details><summary>Ça remplace une alimentation équilibrée ?</summary><p>Non. Un complément alimentaire complète, il ne remplace pas. Parles-en à ton pédiatre si tu as un doute sur les besoins de ton enfant.</p></details>
+  </div></section>
+  <section class="alt"><div class="wrap"><div class="head"><h2>les autres gammes</h2></div><div class="others" data-others="mini"></div></div></section>
+</div>
+
+<!-- =========================== ACTIVE =========================== -->
+<div class="view" id="v-active" data-view="active" hidden>
+  <header class="rhero">
+    <div class="ph"><img src="assets/img/active-hero.jpg" alt="Femme buvant un jus orange avec une paille" style="object-position:center 30%"><span class="tag">rise. · pêche & citron</span></div>
+    <div class="rhero-copy">
+      <span class="label">straw. active · femme active · matin, sport, soir</span>
+      <h1>sip your <span class="d">routine.</span></h1>
+      <p>Une paille au réveil, une avant la séance, une après, une le soir. Ta boisson ne change pas, ta routine si.</p>
+      <div class="row"><a class="btn" href="#active-shop">découvrir les 4 pailles</a><a class="btn ghost" href="#active-routine">voir la journée</a></div>
+      <div class="hero-mini" data-heromini="active" aria-hidden="true"></div>
+    </div>
+  </header>
+  <div class="wrap"><div class="facts" style="border-top:0">
+    <div><b>4 moments</b>matin, avant sport, après sport, soir</div>
+    <div><b>4 saveurs naturelles</b>sans sucre ajouté</div>
+    <div><b>1 étui = 1 semaine</b>7 pailles, lun → dim</div>
+    <div><b>dès 0,94 € la paille</b>en abonnement</div>
+  </div></div>
+  <section id="active-routine"><div class="wrap">
+    <div class="head"><h2>une journée <span class="d">straw.</span></h2><p>Rise et sleep tous les jours. Pulse et move les jours de séance. Dans la boisson que tu bois déjà.</p></div>
+    <div class="routine" id="routineGrid"></div>
+  </div></section>
+  <section id="active-shop" style="padding-top:0"><div class="wrap">
+    <div class="head"><h2>the edit</h2><span class="label">étui semaine · 7 pailles · 9,90 €</span></div>
+    <div class="shop" data-shop="active"></div>
+  </div></section>
+  <section class="alt fiche" id="active-fiche"><div class="wrap" data-fiche="active"></div></section>
+  <section><div class="wrap">
+    <div class="head"><h2>formules</h2><span class="label">livraison offerte dès 30 € · coffret découverte 4 étuis : 35 €</span></div>
+    <div class="offers" data-offers="active"></div>
+  </div></section>
+  <section class="alt"><div class="wrap">
+    <div class="head"><h2>le rituel <span class="d">straw.</span></h2><span class="mock">moodboard · photos non libres de droits</span></div>
+    <div class="mood">
+      <figure><div class="ph"><img src="assets/img/active-masque.jpg" alt="Femme en peignoir avec un masque, buvant avec une paille" style="object-position:center 35%"></div><figcaption><span class="label">7:30</span><strong>mask on, glow in</strong><span>rise. dans le matcha du matin.</span></figcaption></figure>
+      <figure><div class="ph"><img src="assets/img/active-soleil.jpg" alt="Femme au soleil buvant un jus orange avec une paille"></div><figcaption><span class="label">18:00</span><strong>after the class</strong><span>move. dans ta gourde.</span></figcaption></figure>
+      <figure><div class="ugc"><span class="label">22:30</span><b>ta photo ici</b><span>Partage ta routine avec #mystrawroutine. Les meilleures photos rejoignent ce moodboard.</span></div><figcaption><span class="label">communauté</span><strong>sleep. dans ton infusion</strong><span>La dernière gorgée de la journée.</span></figcaption></figure>
+    </div>
+  </div></section>
+  <section><div class="wrap">
+    <div class="head"><h2>elles en parlent</h2><span class="mock">avis illustratifs · maquette, aucun client réel</span></div>
+    <div class="revs" data-revs="active"></div>
+  </div></section>
+  <section class="alt"><div class="wrap"><div class="head"><h2>les autres gammes</h2></div><div class="others" data-others="active"></div></div></section>
+</div>
+
+<!-- =========================== LUNA =========================== -->
+<div class="view" id="v-luna" data-view="luna" hidden>
+  <header class="rhero">
+    <div class="ph"><img src="assets/img/luna-fleurs.jpg" alt="Quatre femmes entourées de fleurs roses" style="object-position:center 30%"><span class="tag">balance. · rose & litchi</span></div>
+    <div class="rhero-copy">
+      <span class="label">straw. luna · santé féminine</span>
+      <h1>ton cycle, <span class="d">à chaque gorgée.</span></h1>
+      <p>Règles, syndrome prémenstruel, projet bébé, ménopause. Quatre pailles pour les grandes phases du corps féminin. On ne promet rien que la science n'autorise : seulement des allégations de santé validées.</p>
+      <div class="row"><a class="btn" href="#luna-cycle">trouver ma paille</a><a class="btn ghost" href="#luna-shop">les 4 pailles luna</a></div>
+      <div class="hero-mini" data-heromini="luna" aria-hidden="true"></div>
+    </div>
+  </header>
+  <div class="wrap"><div class="facts" style="border-top:0">
+    <div><b>4 phases de vie</b>cycle, grossesse, ménopause</div>
+    <div><b>vitamine B6</b>contribue à réguler l'activité hormonale</div>
+    <div><b>sans hormones</b>ni phyto-œstrogènes</div>
+    <div><b>conçu avec</b>[sage-femme partenaire, à confirmer]</div>
+  </div></div>
+  <section id="luna-cycle"><div class="wrap">
+    <div class="head"><h2>la roue <span class="d">du cycle</span></h2><p>Touche un jour de ton cycle pour voir la phase et la paille qui l'accompagne. Exemple sur un cycle de 28 jours.</p></div>
+    <div class="cycle">
+      <div class="wheel" id="wheel"></div>
+      <div class="phase" id="phase" aria-live="polite"></div>
+    </div>
+    <div class="life">
+      <div><span class="label">11 – 50 ans</span><b>flow.</b><span>chaque mois, J1 à J5</span></div>
+      <div><span class="label">11 – 50 ans</span><b>balance.</b><span>chaque mois, J15 à J28</span></div>
+      <div><span class="label">projet bébé</span><b>bloom.</b><span>tous les jours, 1 mois avant → 3 mois après</span></div>
+      <div><span class="label">45 ans et +</span><b>meno.</b><span>tous les jours</span></div>
+    </div>
+  </div></section>
+  <section class="alt" id="luna-shop"><div class="wrap">
+    <div class="head"><h2>les 4 <span class="d">luna.</span></h2><span class="label">étui · 7 pailles · 9,90 €</span></div>
+    <div class="shop" data-shop="luna"></div>
+  </div></section>
+  <section class="fiche" id="luna-fiche"><div class="wrap" data-fiche="luna"></div></section>
+  <section class="alt"><div class="wrap">
+    <div class="head"><h2>formules luna</h2><span class="label">livraison discrète · pause en un clic</span></div>
+    <div class="offers" data-offers="luna"></div>
+  </div></section>
+  <section><div class="wrap">
+    <div class="head"><h2>entre <span class="d">nous.</span></h2><span class="mock">moodboard · photos non libres de droits</span></div>
+    <div class="mood">
+      <figure><div class="ph"><img src="assets/img/luna-cercle.jpg" alt="Trois femmes photographiées en contre-plongée, têtes rapprochées" style="object-position:center 40%"></div><figcaption><span class="label">flow. · J2</span><strong>le cercle</strong><span>Parler des règles sans baisser la voix.</span></figcaption></figure>
+      <figure><div class="ph"><img src="assets/img/luna-ages.jpg" alt="Quatre femmes d'âges différents qui rient ensemble" style="object-position:center 30%"></div><figcaption><span class="label">de 25 à 65 ans</span><strong>toutes les phases</strong><span>Une gamme qui grandit avec toi.</span></figcaption></figure>
+      <figure><div class="ph"><img src="assets/img/luna-transmission.jpg" alt="Une femme aux cheveux blancs et une jeune femme au soleil sur la plage" style="object-position:center 30%"></div><figcaption><span class="label">meno. · 7:30</span><strong>la transmission</strong><span>Ce que nos mères ne nous ont pas toujours dit.</span></figcaption></figure>
+    </div>
+  </div></section>
+  <section class="alt"><div class="wrap">
+    <div class="head"><h2>elles en parlent</h2><span class="mock">avis illustratifs · maquette, aucun client réel</span></div>
+    <div class="revs" data-revs="luna"></div>
+  </div></section>
+  <section><div class="wrap" style="max-width:900px">
+    <div class="head"><h2>questions intimes</h2></div>
+    <details><summary>Est-ce que luna soulage les douleurs de règles ?</summary><p>Aucune allégation de santé autorisée ne permet de le dire, donc on ne le dit pas. flow. apporte du fer et du magnésium, qui contribuent à réduire la fatigue. Des règles très douloureuses méritent une consultation (endométriose, SOPK).</p></details>
+    <details><summary>Je prends la pilule, ça change quelque chose ?</summary><p>Sous pilule, il n'y a pas d'ovulation ni de vraie phase lutéale. flow. reste utile pendant les saignements. Demande conseil à ton médecin ou ta sage-femme pour balance.</p></details>
+    <details><summary>Je suis enceinte, je peux prendre bloom. ?</summary><p>bloom. est pensé pour le projet bébé et le premier trimestre. Ta sage-femme ou ton médecin t'a peut-être déjà prescrit des folates : montre-lui la composition avant.</p></details>
+  </div></section>
+  <section class="alt"><div class="wrap"><div class="head"><h2>les autres gammes</h2></div><div class="others" data-others="luna"></div></div></section>
+</div>
+
+<!-- =========================== SILVER =========================== -->
+<div class="view" id="v-silver" data-view="silver" hidden>
+  <header class="rhero">
+    <div class="ph"><img src="assets/img/silver-plage.jpg" alt="Homme âgé en lunettes roses buvant à la paille sur la plage" style="object-position:center 25%"><span class="tag">hydra. · citron & menthe</span></div>
+    <div class="rhero-copy">
+      <div class="sizes"><span class="label">taille du texte</span><div class="seg" id="sizeSeg" role="group" aria-label="Taille du texte"><button type="button" data-size="1" aria-pressed="true">A</button><button type="button" data-size="1.125" aria-pressed="false">A+</button><button type="button" data-size="1.25" aria-pressed="false">A++</button></div></div>
+      <span class="label">straw. silver · senior · 65 ans et plus</span>
+      <h1>jeune depuis <span class="d">longtemps.</span></h1>
+      <p>Pas de gélule à avaler, pas de pilulier à remplir. Une paille dans le verre d'eau ou le jus du matin, et vos vitamines sont prises. En prime, vous buvez un grand verre, ce dont le corps a besoin avec l'âge.</p>
+      <div class="row"><a class="btn" href="#silver-shop">les 4 pailles silver</a><a class="btn ghost" href="#silver-eau">le compteur d'eau</a></div>
+      <div class="hero-mini" data-heromini="silver" aria-hidden="true"></div>
+    </div>
+  </header>
+  <div class="wrap"><div class="facts" style="border-top:0">
+    <div><b>rien à avaler</b>ni gélule, ni comprimé</div>
+    <div><b>gros caractères</b>sur l'étui et chaque sachet</div>
+    <div><b>1 paille = 1 grand verre</b>environ 250 ml bus</div>
+    <div><b>livré chez vous</b>ou en pharmacie [à confirmer]</div>
+  </div></div>
+  <section id="silver-shop"><div class="wrap">
+    <div class="head"><h2>la collection <span class="d">silver.</span></h2><span class="label">étui semaine · 7 pailles · 9,90 €</span></div>
+    <div class="shop" data-shop="silver"></div>
+  </div></section>
+  <section class="alt fiche" id="silver-fiche"><div class="wrap" data-fiche="silver"></div></section>
+  <section id="silver-eau"><div class="wrap hydro">
+    <div class="ph"><img src="assets/img/silver-bulles.jpg" alt="Couple âgé assis sur un banc, faisant des bulles de savon" style="object-position:center 50%"></div>
+    <div style="min-width:0">
+      <span class="label">la signature silver</span>
+      <h2 style="margin-top:12px">avec l'âge, <span class="d">on oublie de boire.</span></h2>
+      <p>La sensation de soif diminue avec les années, alors que le corps a toujours besoin d'environ 1,5 litre d'eau par jour. Chaque paille straw. silver est parfumée et se boit dans un grand verre : deux pailles, c'est déjà un tiers de l'objectif.</p>
+      <p class="label">essayez : touchez un verre pour le remplir</p>
+      <div class="glasses" id="glasses"></div>
+      <div class="hcount" id="hcount" aria-live="polite"></div>
+    </div>
+  </div></section>
+  <section class="alt"><div class="wrap">
+    <div class="head"><h2>formules silver</h2><span class="label">livraison offerte · commande possible par téléphone [à confirmer]</span></div>
+    <div class="offers" data-offers="silver"></div>
+  </div></section>
+  <section><div class="wrap">
+    <div class="head"><h2>l'âge <span class="d">d'argent.</span></h2><span class="mock">moodboard · photos non libres de droits</span></div>
+    <div class="mood">
+      <figure><div class="ph"><img src="assets/img/silver-amies.jpg" alt="Deux femmes âgées en chapeau boivent des milkshakes colorés à la paille" style="object-position:center 30%"></div><figcaption><span class="label">16:00</span><strong>le thé des copines</strong><span>mobil. dans un soda à l'orange maison.</span></figcaption></figure>
+      <figure><div class="ph"><img src="assets/img/silver-lunettes.jpg" alt="Homme âgé aux lunettes jaunes buvant un café glacé à la paille" style="object-position:center 25%"></div><figcaption><span class="label">10:30</span><strong>le café glacé</strong><span>tonus. pour la marche du matin.</span></figcaption></figure>
+      <figure><div class="ph"><img src="assets/img/silver-piscine.jpg" alt="Femme âgée en lunettes de soleil turquoise buvant à la paille au bord d'une piscine" style="object-position:center 30%"></div><figcaption><span class="label">15:00</span><strong>la piscine</strong><span>hydra. dans un grand verre d'eau fraîche.</span></figcaption></figure>
+    </div>
+  </div></section>
+  <section class="alt"><div class="wrap">
+    <div class="head"><h2>ils et elles en parlent</h2><span class="mock">avis illustratifs · maquette, aucun client réel</span></div>
+    <div class="revs" data-revs="silver"></div>
+  </div></section>
+  <section><div class="wrap" style="max-width:900px">
+    <div class="head"><h2>vos questions</h2></div>
+    <details><summary>Je prends déjà des médicaments, est-ce compatible ?</summary><p>Montrez la composition à votre médecin ou pharmacien avant de commencer. C'est indispensable si vous prenez un anticoagulant (mobil. contient de la vitamine K) ou si vous suivez un régime sans sel (hydra. contient du sodium).</p></details>
+    <details><summary>Mes enfants peuvent-ils commander pour moi ?</summary><p>Oui. L'abonnement peut être payé par un proche et livré à votre adresse, chez vous ou en résidence. [Fonction à confirmer.]</p></details>
+    <details><summary>J'ai du mal à aspirer, est-ce adapté ?</summary><p>La paille demande la même force qu'une paille classique. En cas de troubles de la déglutition, demandez l'avis d'un professionnel de santé avant utilisation.</p></details>
+  </div></section>
+  <section class="alt"><div class="wrap"><div class="head"><h2>les autres gammes</h2></div><div class="others" data-others="silver"></div></div></section>
+</div>
+</main>
+
+<div class="stripe" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <span class="logo">straw<span class="dot">.</span></span>
+    <div>
+      <div class="ftl"><a href="#mini">straw. mini</a><a href="#active">straw. active</a><a href="#luna">straw. luna</a><a href="#silver">straw. silver</a><a href="#accueil-histoire">notre histoire</a></div>
+      <p>Clermont-Ferrand, France. Compléments alimentaires. Ne pas dépasser la dose journalière recommandée. Ne se substituent pas à une alimentation variée et équilibrée et à un mode de vie sain. Tenir hors de portée des jeunes enfants. Maquette de projet étudiant : prix, avis et compositions illustratifs, à valider avec le fabricant et un expert réglementaire avant toute commercialisation.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const RANGES={
+ mini:{name:'mini',font:'f-mini',sig:'var(--s-mini)',who:'kids · 4 à 11 ans',tag:'Les vitamines à la paille, avec un sticker par jour.',img:'assets/img/mini-limonade.jpg',voice:'parent',price:'8,90 €',
+  products:[
+   {id:'boost',name:'boost.',moment:'matin',time:'07:45',topic:'immunité',flavor:'fraise',c:'#F2603D',pk:'#FFF7E3',drink:'lait, jus d\'orange, eau',
+    pitch:'Le petit-déj des jours d\'école et des hivers à rhumes.',
+    comp:[['Vitamine C','40 mg','50 %'],['Vitamine D','5 µg','100 %'],['Zinc','3 mg','30 %']],
+    claim:['Les vitamines C et D et le zinc contribuent au fonctionnement normal du système immunitaire.','La vitamine D est nécessaire à une croissance et un développement osseux normaux chez l\'enfant.'],
+    warn:['Ne pas cumuler avec un autre complément contenant de la vitamine D sans avis médical.']},
+   {id:'grow',name:'grow.',moment:'goûter',time:'16:30',topic:'croissance',flavor:'banane & vanille',c:'#FFC531',pk:'#1E2A44',drink:'lait, boisson végétale',
+    pitch:'Calcium et vitamine D au goûter, pour des os qui grandissent.',
+    comp:[['Calcium','120 mg','15 %'],['Vitamine D','5 µg','100 %']],
+    claim:['Le calcium et la vitamine D sont nécessaires à une croissance et un développement osseux normaux chez l\'enfant.'],
+    warn:['Ne pas prendre le même jour que boost. sans avis médical (vitamine D).']},
+   {id:'focus',name:'focus.',moment:'école',time:'10:00',topic:'concentration',flavor:'pomme verte',c:'#57C29A',pk:'#1E2A44',drink:'eau, dans la gourde',
+    pitch:'Dans la gourde du cartable, pour les journées de classe.',
+    comp:[['Fer','3 mg','21 %'],['Iode','50 µg','33 %']],
+    claim:['Le fer contribue au développement cognitif normal de l\'enfant.','L\'iode contribue à la fonction cognitive normale.'],
+    warn:['Contient du fer : un surdosage peut être dangereux pour les jeunes enfants. Conserver hors de leur portée.']},
+   {id:'dodo',name:'dodo.',moment:'soir',time:'20:15',topic:'rituel du coucher',flavor:'camomille & pomme douce',c:'#5AAEE8',pk:'#1E2A44',drink:'lait tiède',
+    pitch:'La dernière gorgée avant l\'histoire du soir. Sans mélatonine.',
+    comp:[['Magnésium','30 mg','8 %'],['Extrait de camomille','30 mg','–'],['Extrait de tilleul','30 mg','–']],
+    claim:['Le magnésium contribue au fonctionnement normal du système nerveux.'],
+    warn:['Sans mélatonine, déconseillée chez l\'enfant sans avis médical.']}],
+  offers:[
+   {l:'la semaine · pour tester',a:'8,90 €',s:'/ 7 pailles',u:'1 gamme · 1,27 € la paille',p:'Un étui et sa planche de stickers. Pour voir s\'il aime.',b:'choisir'},
+   {l:'duo boost + dodo · le plus choisi',a:'54 €',s:'/ mois',u:'56 pailles · 0,96 € la paille',p:'Le matin et le soir. Sans engagement, pause pendant les vacances.',b:'s\'abonner',hl:1},
+   {l:'solo · abonnement',a:'29 €',s:'/ mois',u:'28 pailles · 1,04 € la paille',p:'Une gamme tous les jours : boost, grow, focus ou dodo.',b:'s\'abonner'}],
+  revs:[['5','Mon fils réclame sa paille au petit-déj. On a arrêté de se battre pour le sirop.','Sophie, maman de Tom, 6 ans','boost.'],
+   ['5','Le tableau de stickers sur le frigo, c\'est ce qui a tout changé.','Karim, papa de deux filles','duo'],
+   ['4','dodo. dans le lait tiède est devenu notre rituel du soir, avec l\'histoire.','Julie, maman d\'Inès, 5 ans','dodo.']]},
+ active:{name:'active',font:'f-active',sig:'var(--s-active)',who:'femme active · matin → soir',tag:'Matin, avant et après le sport, sommeil.',img:'assets/img/active-hero.jpg',voice:'tu',price:'9,90 €',
+  products:[
+   {id:'rise',name:'rise.',moment:'matin',time:'07:30',topic:'glow & focus',flavor:'pêche & citron',c:'#EBB9A2',pk:'#2A2420',drink:'eau, matcha glacé, jus',
+    pitch:'Glow et focus réunis dans une seule paille : ta peau et ton énergie, dès le réveil.',
+    comp:[['Vitamine C','80 mg','100 %'],['Zinc','5 mg','50 %'],['Biotine','50 µg','100 %'],['Vitamine B6','1,4 mg','100 %'],['Vitamine B12','2,5 µg','100 %'],['L-théanine','100 mg','–']],
+    claim:['La biotine et le zinc contribuent au maintien d\'une peau normale.','La vitamine C contribue à la formation normale de collagène pour assurer la fonction normale de la peau.','Les vitamines B6 et B12 contribuent à réduire la fatigue.'],
+    warn:['Déconseillé aux femmes enceintes ou allaitantes sans avis médical.']},
+   {id:'pulse',name:'pulse.',moment:'avant le sport',time:'17:15',topic:'énergie',flavor:'citron vert & gingembre',c:'#BFD8C2',pk:'#2A2420',drink:'eau, dans ta gourde',
+    pitch:'30 minutes avant la séance. Caféine naturelle de guarana.',
+    comp:[['Caféine (guarana)','75 mg','–'],['Vitamine B3','8 mg','50 %'],['Vitamine B5','3 mg','50 %']],
+    claim:['La caféine contribue à augmenter la vigilance et à améliorer la concentration. Effet obtenu avec 75 mg.','Les vitamines B3 et B5 contribuent à réduire la fatigue.'],
+    warn:['Contient de la caféine (75 mg). Déconseillé aux enfants et aux femmes enceintes ou allaitantes.','Évite après 16 h si tu es sensible à la caféine.']},
+   {id:'move',name:'move.',moment:'après le sport',time:'18:30',topic:'récup',flavor:'fruits rouges',c:'#E8B8C4',pk:'#2A2420',drink:'eau, dans ta gourde',
+    pitch:'Après la séance, dans ta gourde. Électrolytes et magnésium.',
+    comp:[['Magnésium','57 mg','15 %'],['Potassium','200 mg','10 %'],['Sodium','120 mg','–'],['Vitamine C','40 mg','50 %']],
+    claim:['Le magnésium contribue à réduire la fatigue et au fonctionnement normal des muscles.','Le potassium contribue au fonctionnement normal des muscles.'],
+    warn:['Avis médical en cas d\'insuffisance rénale.']},
+   {id:'sleep',name:'sleep.',moment:'soir',time:'22:30',topic:'sommeil',flavor:'camomille & vanille',c:'#CBC0DC',pk:'#2A2420',drink:'lait végétal tiède, infusion',
+    pitch:'La dernière gorgée de la journée, 30 minutes avant de dormir.',
+    comp:[['Mélatonine','1 mg','–'],['Extrait de camomille','50 mg','–'],['Extrait de mélisse','40 mg','–']],
+    claim:['La mélatonine contribue à réduire le temps d\'endormissement. Effet obtenu avec 1 mg peu avant le coucher.'],
+    warn:['Déconseillé aux femmes enceintes ou allaitantes et aux enfants.','Avis médical en cas de traitement, de maladie inflammatoire ou auto-immune.','Ne pas conduire après la prise.']}],
+  offers:[
+   {l:'la semaine · pour tester',a:'9,90 €',s:'/ 7 pailles',u:'1 gamme · 1,41 € la paille',p:'Un étui, une semaine. Pour trouver ta saveur.',b:'choisir'},
+   {l:'duo rise + sleep · le plus choisi',a:'59 €',s:'/ mois',u:'56 pailles · 1,05 € la paille',p:'La routine du quotidien, matin et soir. Sans engagement, pause en un clic.',b:'s\'abonner',hl:1},
+   {l:'routine sport · 4 gammes',a:'85 €',s:'/ mois',u:'rise + sleep + 12 pulse + 12 move · 0,94 € la paille',p:'Pour celles qui s\'entraînent 3 fois par semaine.',b:'s\'abonner'}],
+  revs:[['5','Je la mets dans mon matcha pendant mon masque, c\'est devenu mon moment du matin.','Camille R.','rise.'],
+   ['5','pulse. avant le pilates, move. après. Enfin pas une poudre qui fait des grumeaux.','Léa M.','routine sport'],
+   ['5','Dans mon lait d\'avoine tiède, j\'aime le rituel plus que tout.','Sarah K.','sleep.']]},
+ luna:{name:'luna',font:'f-luna',sig:'var(--s-luna)',who:'santé féminine · cycle → ménopause',tag:'Règles, SPM, projet bébé, ménopause.',img:'assets/img/luna-fleurs.jpg',voice:'tu',price:'9,90 €',
+  products:[
+   {id:'flow',name:'flow.',moment:'J1 à J5',time:'règles',topic:'règles',flavor:'framboise',c:'#C8475A',pk:'#FFF2EE',drink:'eau, infusion tiède',
+    pitch:'Les jours de règles, quand le fer s\'en va et que la fatigue arrive.',
+    comp:[['Fer','7 mg','50 %'],['Vitamine C','40 mg','50 %'],['Magnésium','57 mg','15 %']],
+    claim:['Le fer contribue à la formation normale de globules rouges et à réduire la fatigue.','La vitamine C accroît l\'absorption du fer.','Le magnésium contribue à réduire la fatigue.'],
+    warn:['Contient du fer : conserver hors de portée des enfants.']},
+   {id:'balance',name:'balance.',moment:'J15 à J28',time:'phase lutéale',topic:'syndrome prémenstruel',flavor:'rose & litchi',c:'#E9A3A6',pk:'#4A1626',drink:'eau pétillante, thé glacé',
+    pitch:'Les deux semaines avant les règles, quand l\'humeur et le corps font des montagnes russes.',
+    comp:[['Vitamine B6','1,4 mg','100 %'],['Magnésium','57 mg','15 %'],['Extrait de safran','15 mg','–']],
+    claim:['La vitamine B6 contribue à réguler l\'activité hormonale.','La vitamine B6 et le magnésium contribuent à des fonctions psychologiques normales.'],
+    warn:['Déconseillé aux femmes enceintes ou allaitantes (safran).']},
+   {id:'bloom',name:'bloom.',moment:'projet bébé',time:'tous les jours',topic:'grossesse',flavor:'abricot',c:'#F2A65A',pk:'#4A1626',drink:'eau, jus',
+    pitch:'Dès le projet de bébé, et jusqu\'à 3 mois de grossesse.',
+    comp:[['Acide folique','400 µg','200 %'],['Iode','75 µg','50 %'],['Vitamine D','5 µg','100 %']],
+    claim:['Le folate contribue à la croissance des tissus maternels durant la grossesse.','Une supplémentation en acide folique augmente le statut maternel en folate. Un statut faible est un facteur de risque d\'anomalies du tube neural chez le fœtus. Effet obtenu avec 400 µg par jour, au moins un mois avant et jusqu\'à trois mois après la conception.'],
+    warn:['Montre la composition à ta sage-femme ou ton médecin : des folates t\'ont peut-être déjà été prescrits.']},
+   {id:'meno',name:'meno.',moment:'45 ans et +',time:'tous les jours',topic:'ménopause',flavor:'figue & vanille',c:'#8C4A6B',pk:'#FFF2EE',drink:'lait végétal, infusion tiède',
+    pitch:'Pour la périménopause et après. Pour tout ce qui change, sans hormones.',
+    comp:[['Vitamine D','10 µg','200 %'],['Calcium','120 mg','15 %'],['Vitamine B6','1,4 mg','100 %'],['Magnésium','57 mg','15 %']],
+    claim:['La vitamine B6 contribue à réguler l\'activité hormonale.','La vitamine D et le calcium contribuent au maintien d\'une ossature normale.','Le magnésium contribue à réduire la fatigue.'],
+    warn:['Ne pas cumuler avec un autre complément riche en vitamine D sans avis médical.']}],
+  offers:[
+   {l:'la semaine · pour tester',a:'9,90 €',s:'/ 7 pailles',u:'1 gamme · 1,41 € la paille',p:'Un étui pour découvrir la paille qui te correspond.',b:'choisir'},
+   {l:'le cycle · flow + balance',a:'26 €',s:'/ cycle',u:'5 flow + 14 balance · 1,37 € la paille',p:'Livré au rythme de ton cycle, pas du calendrier. Le plus choisi.',b:'s\'abonner',hl:1},
+   {l:'meno ou bloom · abonnement',a:'32 €',s:'/ mois',u:'28 pailles · 1,14 € la paille',p:'Une paille par jour, tous les jours. Sans engagement.',b:'s\'abonner'}],
+  revs:[['5','Je savais pas que mes coups de fatigue pendant les règles pouvaient venir du fer. flow. est devenu automatique.','Inès B.','flow.'],
+   ['5','Ma mère prend meno., moi balance. On a commandé ensemble, on en parle enfin.','Mariam et Nadia','meno. + balance.'],
+   ['4','La livraison au rythme du cycle, c\'est malin. Je n\'y pense plus.','Clara D.','le cycle']]},
+ silver:{name:'silver',font:'f-silver',sig:'var(--s-silver)',who:'senior · 65 ans et plus',tag:'Hydratation, tonus, mobilité, vision.',img:'assets/img/silver-plage.jpg',voice:'vous',price:'9,90 €',
+  products:[
+   {id:'hydra',name:'hydra.',moment:'en journée',time:'12:30',topic:'hydratation',flavor:'citron & menthe',c:'#2E9C9A',pk:'#FFF6EC',drink:'un grand verre d\'eau',
+    pitch:'Avec l\'âge, on a moins soif. Une paille parfumée donne envie de finir son verre.',
+    comp:[['Potassium','150 mg','8 %'],['Magnésium','57 mg','15 %'],['Sodium','100 mg','–']],
+    claim:['Le magnésium contribue à l\'équilibre électrolytique.','Le potassium contribue au fonctionnement normal des muscles.'],
+    warn:['Avis médical en cas d\'insuffisance rénale ou de régime sans sel.']},
+   {id:'tonus',name:'tonus.',moment:'matin',time:'08:30',topic:'énergie',flavor:'orange sanguine',c:'#E9853A',pk:'#3A2216',drink:'jus d\'orange, eau',
+    pitch:'Les vitamines B pour garder la forme et l\'esprit vif.',
+    comp:[['Vitamine B12','2,5 µg','100 %'],['Vitamine B6','1,4 mg','100 %'],['Folates','200 µg','100 %'],['Vitamine D','10 µg','200 %']],
+    claim:['Les vitamines B6 et B12 contribuent à réduire la fatigue.','La vitamine B12 contribue à des fonctions psychologiques normales.','La vitamine D contribue au maintien d\'une fonction musculaire normale.'],
+    warn:['Ne pas cumuler avec un autre complément riche en vitamine D sans avis médical.']},
+   {id:'mobil',name:'mobil.',moment:'midi',time:'12:30',topic:'os & muscles',flavor:'pêche & gingembre',c:'#F08DB0',pk:'#3A2216',drink:'eau, thé glacé',
+    pitch:'Pour continuer à marcher, jardiner, danser.',
+    comp:[['Calcium','120 mg','15 %'],['Vitamine D','10 µg','200 %'],['Vitamine C','80 mg','100 %'],['Vitamine K','25 µg','33 %']],
+    claim:['La vitamine D et le calcium contribuent au maintien d\'une ossature normale.','La vitamine C contribue à la formation normale de collagène pour assurer la fonction normale des os et des cartilages.','La vitamine K contribue au maintien d\'une ossature normale.'],
+    warn:['Contient de la vitamine K : avis médical obligatoire en cas de traitement anticoagulant (AVK).','Ne pas prendre le même jour que tonus. sans avis médical (vitamine D).']},
+   {id:'vision',name:'vision.',moment:'soir',time:'19:00',topic:'yeux',flavor:'myrtille',c:'#6F8FD8',pk:'#FFF6EC',drink:'eau, infusion tiède',
+    pitch:'Pour lire le journal, faire les mots croisés, profiter des petits-enfants.',
+    comp:[['Zinc','5 mg','50 %'],['Vitamine A','400 µg','50 %'],['Lutéine','10 mg','–']],
+    claim:['Le zinc et la vitamine A contribuent au maintien d\'une vision normale.'],
+    warn:['Avis médical si vous prenez déjà un complément pour les yeux.']}],
+  offers:[
+   {l:'la semaine · pour essayer',a:'9,90 €',s:'/ 7 pailles',u:'1 gamme · 1,41 € la paille',p:'Un étui pour goûter et voir si la paille vous convient.',b:'choisir'},
+   {l:'duo hydra + mobil · le plus choisi',a:'59 €',s:'/ mois',u:'56 pailles · 1,05 € la paille',p:'Deux grands verres par jour. Livraison à domicile, sans engagement.',b:'s\'abonner',hl:1},
+   {l:'solo · abonnement',a:'32 €',s:'/ mois',u:'28 pailles · 1,14 € la paille',p:'Une gamme tous les jours. Un proche peut l\'offrir et la payer.',b:'s\'abonner'}],
+  revs:[['5','Je n\'arrivais plus à avaler mes gélules. Là, je bois mon jus d\'orange et c\'est fait.','Monique, 81 ans','tonus.'],
+   ['5','Ma fille me l\'a offert. Je bois enfin mes verres d\'eau, et le goût citron est bon.','Jean-Pierre, 76 ans','hydra.'],
+   ['5','Les gros caractères sur le sachet, on ne se trompe pas de jour.','Fatima, 72 ans','duo']]}
+};
+const ORDER=['mini','active','luna','silver'];
+const allP=r=>RANGES[r].products;
+
+const box=(p,r)=>`<div class="box" style="--c:${p.c};--pk:${p.pk}"><span class="str"></span><div class="f"><span class="b">straw.</span><span class="rg">${RANGES[r].name}</span><span class="n">${p.name}</span><span class="t">${p.flavor}</span><div class="ft"><span>7 jours</span><span>${p.moment}</span></div></div></div>`;
+const boxFor=(p,r)=>`<div class="${RANGES[r].font}-wrap" style="--disp:${fontOf(r)};--disp-st:${stOf(r)};--disp-w:${wOf(r)};--disp-fvs:${fvsOf(r)};display:contents">${box(p,r)}</div>`;
+function fontOf(r){return {mini:"'Lilita One',sans-serif",active:"'Instrument Serif',serif",luna:"'Bodoni Moda',serif",silver:"'Fraunces',serif"}[r]}
+function stOf(r){return r==='mini'?'normal':'italic'}
+function wOf(r){return {mini:400,active:400,luna:500,silver:650}[r]}
+function fvsOf(r){return r==='silver'?"'SOFT' 100,'WONK' 1":'normal'}
+const sachet=(p,d)=>`<div class="sachet" style="--c:${p.c};--pk:${p.pk}"><div class="band"><span>${p.name}</span></div><span class="day">${d||'lun'}</span></div>`;
+const straw=p=>`<div class="straw" style="--c:${p.c}"><i></i><i></i><i></i><i></i><i></i><i></i></div>`;
+
+/* ---------- home ---------- */
+$('lineup').innerHTML=ORDER.map(r=>{const R=RANGES[r],ps=R.products;return `<a class="lu" href="#${r}">
+ <div class="stage">${boxFor(ps[0],r)}${boxFor(ps[1],r)}${boxFor(ps[3],r)}</div>
+ <h3><span>straw.</span><span class="${R.font}" style="font-weight:${wOf(r)}">${R.name}</span></h3>
+ <span class="label">${R.who}</span>
+ <p>${ps.map(p=>p.name).join(' · ')}</p><span class="go">découvrir la gamme</span></a>`}).join('');
+const FAM=[['07:30','Camille','rise. dans son matcha glacé','active'],['07:45','Léo','boost. dans son bol de lait','mini'],['08:30','Jean','tonus. dans son jus d\'orange','silver'],['10:00','Nadia','meno. dans son lait d\'avoine','luna'],['12:30','Jean','hydra. dans un grand verre d\'eau','silver'],['16:30','Léo','grow. au goûter, avec maman','mini'],['18:30','Camille','move. dans sa gourde, après le pilates','active'],['20:15','Léo','dodo. avant l\'histoire du soir','mini'],['22:30','Camille','sleep. dans son infusion','active']];
+$('familyDay').innerHTML=FAM.map(([t,w,s,r])=>`<li><time>${t}</time><span class="bd" style="--c:${RANGES[r].sig}"></span><span class="who"><b>${w}</b> <span>· ${s}</span></span><span class="rg">straw. ${RANGES[r].name}</span></li>`).join('');
+
+/* ---------- range views ---------- */
+ORDER.forEach(r=>{
+  const R=RANGES[r],P=R.products;
+  document.querySelector(`[data-heromini="${r}"]`).innerHTML=P.map(p=>box(p,r)).join('');
+  document.querySelector(`[data-shop="${r}"]`).innerHTML=P.map((p,i)=>`<article class="card">
+   <div class="stage"><span class="pill">${p.topic}</span>${box(p,r)}</div>
+   <div class="tp"><h3>${p.name}</h3><span class="price">${R.price}</span></div>
+   <p>${p.flavor} · ${p.moment}</p>
+   <div class="acts"><a class="btn sm" href="#${r}-offres">${R.voice==='vous'?'commander':'ajouter'}</a><button class="btn sm ghost" type="button" data-show="${i}">voir la fiche</button></div></article>`).join('');
+  document.querySelector(`[data-offers="${r}"]`).innerHTML=R.offers.map(o=>`<div class="offer${o.hl?' hl':''}"><span class="label">${o.l}</span><div class="amt">${o.a} <small>${o.s}</small></div><span class="unit">${o.u}</span><p>${o.p}</p><a class="btn${o.hl?'':' ghost'}" href="#accueil-liste">${o.b}</a></div>`).join('');
+  document.querySelector(`[data-offers="${r}"]`).closest('section').id=r+'-offres';
+  document.querySelector(`[data-revs="${r}"]`).innerHTML=R.revs.map(v=>`<article class="rev"><span class="st" aria-label="${v[0]} sur 5">${'★'.repeat(+v[0])}${'☆'.repeat(5-v[0])}</span><q>${v[1]}</q><div class="who"><span>${v[2]}</span><span>${v[3]}</span></div></article>`).join('');
+  document.querySelector(`[data-others="${r}"]`).innerHTML=ORDER.filter(x=>x!==r).map(x=>{const O=RANGES[x];return `<a class="other" href="#${x}"><div class="ph" style="border-radius:6px"><img src="${O.img}" alt=""></div><div style="min-width:0"><b>straw. <span class="${O.font}" style="font-weight:${wOf(x)};letter-spacing:0">${O.name}</span></b><span class="label" style="display:block;margin:4px 0">${O.who}</span><span>${O.tag}</span></div></a>`}).join('');
+  mountFiche(r);
+});
+
+function useText(p,v){
+  if(v==='vous') return [`1 paille par jour au maximum, ${p.moment==='en journée'?'au moment de votre choix':'le '+p.moment}.`,`Avec ${p.drink}. Boisson froide ou tiède, jamais bouillante.`,`Buvez jusqu'à ce que les billes colorées aient disparu : environ un grand verre de 250 ml.`,`Paille à usage unique. Le jour est imprimé en gros sur chaque sachet.`];
+  if(v==='parent') return [`1 paille par jour au maximum, au ${p.moment}.`,`Avec ${p.drink}. Boisson froide ou tiède, jamais chaude.`,`Ton enfant boit jusqu'à ce que les billes aient disparu (environ 200 ml), puis colle son sticker.`,`Dès 4 ans, toujours sous la surveillance d'un adulte. Paille à usage unique.`];
+  return [`1 paille par jour au maximum, ${/^J|projet|ans/.test(p.moment)?p.moment.replace(/^J/,'de J'):'au moment '+(p.moment.startsWith('après')||p.moment.startsWith('avant')?p.moment:'du '+p.moment)}.`,`Avec ${p.drink}. Boisson froide ou tiède, pas bouillante.`,`Bois jusqu'à ce que les billes colorées aient disparu (environ 250 ml).`,`Paille à usage unique.`];
+}
+function mountFiche(r){
+  const R=RANGES[r],P=R.products,root=document.querySelector(`[data-fiche="${r}"]`),v=R.voice;
+  root.innerHTML=`<div class="picker" role="group" aria-label="Choisir une paille">${P.map((p,i)=>`<button type="button" aria-pressed="${i===0}" data-pick="${i}" style="--c:${p.c}"><i></i>${p.name}</button>`).join('')}</div>
+  <div class="fiche-grid"><div class="visual"></div><div style="min-width:0">
+   <span class="label" data-f="moment"></span><h3 style="margin-top:10px" data-f="name"></h3><p class="sub" data-f="pitch"></p>
+   <div class="spec"><div><span class="label">saveur</span><b data-f="flavor"></b></div><div><span class="label">à boire avec</span><b data-f="drink"></b></div><div><span class="label">prix</span><b data-f="price"></b></div></div>
+   <div class="tabs" role="tablist" aria-label="Informations produit">${[['comp','composition'],['use','utilisation'],['claim','bienfaits'],['warn','précautions']].map(([k,l],i)=>`<button role="tab" id="${r}-tab-${k}" aria-selected="${i===0}" data-tab="${k}">${l}</button>`).join('')}</div>
+   <div class="panel" role="tabpanel" aria-live="polite"></div>
+   <div class="row"><a class="btn" href="#${r}-offres">${v==='vous'?'commander':'ajouter'} · ${R.price}</a><a class="btn ghost" href="#${r}-offres">${v==='vous'?'voir les abonnements':'s\'abonner'}</a></div>
+  </div></div>`;
+  let cur=0,tab='comp';
+  const q=s=>root.querySelector(s),f=k=>q(`[data-f="${k}"]`);
+  function panel(){
+    const p=P[cur];let h='';
+    if(tab==='comp')h=`<div class="tbl"><table><thead><tr><th>pour 1 paille</th><th>quantité</th><th>% VNR*</th></tr></thead><tbody>${p.comp.map(c=>`<tr><td>${c[0]}</td><td>${c[1]}</td><td>${c[2]}</td></tr>`).join('')}</tbody></table></div><p class="note">*Valeurs nutritionnelles de référence adulte${r==='mini'?' (indicatif : doses adaptées 4–11 ans, à valider)':''}. Composition indicative, à valider avec le fabricant et un expert réglementaire. Arômes naturels, sans sucre ajouté.</p>`;
+    if(tab==='use')h=`<ul>${useText(p,v).map(x=>`<li>${x}</li>`).join('')}</ul>`;
+    if(tab==='claim')h=`<ul>${p.claim.map(x=>`<li>${x}</li>`).join('')}</ul><p class="note">Allégations issues du registre européen des allégations de santé autorisées. Les autres ingrédients n'ont pas d'allégation autorisée.</p>`;
+    if(tab==='warn')h=`<ul>${p.warn.map(x=>`<li>${x}</li>`).join('')}<li>Ne pas dépasser la dose journalière recommandée.</li><li>Conserver au sec, à l'abri de la chaleur${r==='mini'?', hors de portée des enfants':''}.</li></ul>`;
+    const pn=q('.panel');pn.innerHTML=h;pn.setAttribute('aria-labelledby',`${r}-tab-${tab}`);
+  }
+  function show(i){
+    cur=i;const p=P[i];
+    root.querySelectorAll('[data-pick]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.pick===i)));
+    q('.visual').innerHTML=`<div class="set">${box(p,r)}${sachet(p)}${straw(p)}</div>`;
+    f('moment').textContent=`${p.moment} · ${p.topic}`;
+    f('name').innerHTML=`straw <span class="d">${p.name}</span>`;
+    f('pitch').textContent=p.pitch;f('flavor').textContent=p.flavor;f('drink').textContent=p.drink;f('price').textContent=`${R.price} · 7 pailles`;
+    panel();
+  }
+  root.addEventListener('click',e=>{
+    const b=e.target.closest('[data-pick]');if(b)show(+b.dataset.pick);
+    const t=e.target.closest('[data-tab]');if(t){tab=t.dataset.tab;root.querySelectorAll('[data-tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t)));panel();}
+  });
+  document.querySelector(`[data-shop="${r}"]`).addEventListener('click',e=>{const b=e.target.closest('[data-show]');if(!b)return;show(+b.dataset.show);$(r+'-fiche').scrollIntoView({behavior:'smooth'});});
+  show(0);
+}
+
+/* active: routine */
+$('routineGrid').innerHTML=allP('active').map(p=>`<article class="moment"><div class="time"><b>${p.time}</b><span class="label">${p.moment}</span></div><div class="stage">${box(p,'active')}</div><h3>straw ${p.name}</h3><p>${p.pitch}</p></article>`).join('');
+
+/* storage helpers (per-viewer convenience only) */
+const store={get(k,d){try{const v=localStorage.getItem('straw.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('straw.'+k,JSON.stringify(v))}catch(e){}}};
+
+/* mini: stickers */
+(function(){
+  const D=['lun','mar','mer','jeu','ven','sam','dim'],C=['#F2603D','#FFC531','#57C29A','#5AAEE8','#F2603D','#FFC531','#57C29A'],G=['★','♥','✿','☀','★','♥','✿'];
+  let on=store.get('stickers',[0,0,0,0,0,0,0]);
+  const wrap=$('stkDays');
+  wrap.innerHTML=D.map((d,i)=>`<button type="button" data-d="${i}" aria-label="${d} : coller le sticker" style="--c:${C[i]};--rot:${(i%2?8:-10)}deg"><span>${d}</span><span class="stk">${G[i]}</span></button>`).join('');
+  function paint(){
+    wrap.querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',String(!!on[i])));
+    const n=on.filter(Boolean).length;$('stkCount').textContent=`${n} / 7`;
+    $('stkMsg').textContent=n===7?'Bravo, semaine gagnée ! Un nouvel étui t\'attend.':n>=4?`Plus que ${7-n}, presque !`:n?'C\'est parti pour la semaine.':'';
+  }
+  wrap.addEventListener('click',e=>{const b=e.target.closest('[data-d]');if(!b)return;const i=+b.dataset.d;on[i]=on[i]?0:1;store.set('stickers',on);paint();});
+  paint();
+})();
+
+/* luna: cycle wheel */
+(function(){
+  const L=RANGES.luna.products;
+  const PH=[
+   {from:1,to:5,name:'phase menstruelle',c:L[0].c,txt:'Les règles. Le corps perd du sang, donc du fer, et la fatigue se fait souvent sentir ces jours-là.',p:0},
+   {from:6,to:13,name:'phase folliculaire',c:'#F3C6B8',txt:'Les œstrogènes remontent, l\'énergie aussi. Pas besoin de paille luna : si tu veux un coup de pouce, c\'est le moment de straw rise.',p:null},
+   {from:14,to:14,name:'ovulation',c:L[2].c,txt:'L\'ovulation, autour du 14e jour sur un cycle de 28 jours. En projet bébé, bloom. se prend tous les jours, quelle que soit la phase.',p:2},
+   {from:15,to:28,name:'phase lutéale',c:L[1].c,txt:'La progestérone prend le relais. Ballonnements, humeur en dents de scie, envies de sucre : le syndrome prémenstruel arrive souvent en fin de phase.',p:1}];
+  const phaseOf=d=>PH.find(x=>d>=x.from&&d<=x.to);
+  const cx=130,cy=130,r1=78,r2=124,n=28,gap=0;
+  const pt=(r,a)=>[cx+r*Math.cos(a),cy+r*Math.sin(a)];
+  let svg=`<svg viewBox="0 0 260 260" role="group" aria-label="Roue du cycle de 28 jours">`;
+  for(let i=0;i<n;i++){
+    const a0=(i/n)*2*Math.PI-Math.PI/2,a1=((i+1)/n)*2*Math.PI-Math.PI/2;
+    const [x0,y0]=pt(r2,a0),[x1,y1]=pt(r2,a1),[x2,y2]=pt(r1,a1),[x3,y3]=pt(r1,a0);
+    const ph=phaseOf(i+1);
+    svg+=`<path d="M${x0.toFixed(2)} ${y0.toFixed(2)}A${r2} ${r2} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}L${x2.toFixed(2)} ${y2.toFixed(2)}A${r1} ${r1} 0 0 0 ${x3.toFixed(2)} ${y3.toFixed(2)}Z" fill="${ph.c}" tabindex="0" role="button" data-day="${i+1}" aria-label="Jour ${i+1}, ${ph.name}" aria-pressed="false"></path>`;
+    if((i+1)%7===1||i===13){const [tx,ty]=pt(r2+11,(a0+a1)/2);svg+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" font-size="9" text-anchor="middle" dominant-baseline="middle">J${i+1}</text>`;}
+  }
+  svg+=`<text x="130" y="120" text-anchor="middle" font-size="9" letter-spacing="1.5" id="wDayLbl">JOUR</text><text x="130" y="150" text-anchor="middle" class="big" id="wDay">14</text></svg>`;
+  $('wheel').innerHTML=svg;
+  function pick(d){
+    const ph=phaseOf(d);
+    $('wheel').querySelectorAll('path').forEach(p=>p.setAttribute('aria-pressed',String(+p.dataset.day===d)));
+    $('wDay').textContent=d;
+    const pr=ph.p==null?null:L[ph.p];
+    $('phase').innerHTML=`<span class="label">jour ${d} · J${ph.from}${ph.to!==ph.from?' à J'+ph.to:''}</span><h3>${ph.name}</h3><p>${ph.txt}</p>`+
+     (pr?`<div class="reco">${box(pr,'luna')}<div><span class="label">ta paille</span><br><b>straw ${pr.name}</b> · ${pr.flavor}</div></div>`:`<a class="reco" href="#active" style="text-decoration:none">${boxFor(RANGES.active.products[0],'active')}<div><span class="label">côté straw. active</span><br><b>straw rise.</b> · pêche & citron</div></a>`)+
+     `<div class="legend">${PH.map(x=>`<span style="--c:${x.c}"><i></i>${x.name}</span>`).join('')}</div><p class="label" style="margin-top:16px">chaque cycle est différent : de 21 à 35 jours selon les femmes</p>`;
+  }
+  $('wheel').addEventListener('click',e=>{const p=e.target.closest('[data-day]');if(p)pick(+p.dataset.day)});
+  $('wheel').addEventListener('keydown',e=>{const p=e.target.closest('[data-day]');if(p&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pick(+p.dataset.day)}});
+  pick(3);
+})();
+
+/* silver: water glasses + text size */
+(function(){
+  const N=6;let n=store.get('glasses',2);
+  $('glasses').innerHTML=Array.from({length:N},(_,i)=>`<button type="button" data-g="${i+1}" aria-label="Verre ${i+1}"><span>${i+1}</span></button>`).join('');
+  function paint(){
+    $('glasses').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i<n)));
+    const l=(n*0.25).toFixed(2).replace('.',',').replace(/0$/,'');
+    $('hcount').textContent=n>=N?`${n} verres sur ${N} · 1,5 L : objectif atteint !`:`${n} verre${n>1?'s':''} sur ${N} · ${l} L bu${n>1?'s':''}`;
+  }
+  $('glasses').addEventListener('click',e=>{const b=e.target.closest('[data-g]');if(!b)return;const g=+b.dataset.g;n=(n===g)?g-1:g;store.set('glasses',n);paint();});
+  paint();
+  $('sizeSeg').addEventListener('click',e=>{const b=e.target.closest('[data-size]');if(!b)return;setSize(+b.dataset.size);store.set('size',+b.dataset.size)});
+})();
+function setSize(s){
+  document.documentElement.style.fontSize=(s*100)+'%';
+  $('sizeSeg').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.size===s)));
+}
+
+/* waitlist */
+$('wl-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=$('wl-email').value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){$('wl-err').textContent='Entre une adresse email valide, par exemple toi@exemple.com.';return;}
+  const picked=ORDER.filter(r=>$('wl-'+r).checked).map(r=>'straw. '+RANGES[r].name);
+  $('wl-okmsg').textContent=(picked.length?`Gammes suivies : ${picked.join(', ')}. `:'')+'Ton code −15 % arrive au lancement.';
+  $('wl-form').hidden=true;$('wl-ok').hidden=false;
+});
+
+/* ---------- router ---------- */
+const VIEWS=['home',...ORDER];
+function route(){
+  const h=decodeURIComponent(location.hash.slice(1));
+  let view='home',target=null;
+  const m=h.match(/^(mini|active|luna|silver)(?:-(.+))?$/);
+  if(m){view=m[1];if(m[2])target=h;}
+  else if(h.startsWith('accueil')){if(h!=='accueil')target=h;}
+  const apply=()=>{
+    const changed=document.body.dataset.range!==view;
+    document.body.dataset.range=view;
+    VIEWS.forEach(v=>{$('v-'+v).hidden=v!==view});
+    $('logoSfx').textContent=view==='home'?'':RANGES[view].name;
+    document.querySelectorAll('#rlinks a').forEach(a=>{if(a.getAttribute('href')==='#'+view)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+    $('rangeSel').value=view==='home'?'accueil':view;
+    if(view==='silver')setSize(store.get('size',1));else document.documentElement.style.fontSize='';
+    $('navCta').textContent=view==='home'?'la liste':'commander';
+    $('navCta').setAttribute('href',view==='home'?'#accueil-liste':`#${view}-offres`);
+    if(target){const el=$(target);if(el){el.scrollIntoView({behavior:changed?'auto':'smooth'});return;}}
+    if(changed)window.scrollTo(0,0);
+  };
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(document.startViewTransition&&!reduce&&document.body.dataset.range!==view)document.startViewTransition(apply);else apply();
+}
+$('rangeSel').addEventListener('change',e=>{location.hash=e.target.value});
+window.addEventListener('hashchange',route);
+route();
+</script>
+</body>
+</html>
