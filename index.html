@@ -212,22 +212,9 @@ body[data-range="silver"] .box .t,body[data-range="silver"] .box .ft{font-size:6
 .values b{font-weight:500}
 .values span{color:var(--muted);font-size:.875rem}
 
-.duo{display:flex}
-.duo img{width:clamp(120px,14vw,170px);aspect-ratio:1;border-radius:50%;object-fit:cover;border:2px solid var(--ink)}
-.duo img+img{margin-left:-28px}
-.names{display:flex;gap:24px;flex-wrap:wrap}
-.names strong{display:block;font-weight:500;font-size:1.05rem}
-.names span{color:var(--muted);font-size:.875rem}
-.founders{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}
-.fd{border:1px solid var(--line);border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--bg)}
-.fd-top{display:flex;gap:14px;align-items:center}
-.fd-top img{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:none}
-.fd-top strong{display:block;font-weight:500;font-size:1.1rem;letter-spacing:-.02em}
-.st-right .fd p{margin:0;font-size:.9375rem}
-.st-right .fd .fd-role{color:var(--ink);font-weight:500}
-.fd ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:.875rem;color:var(--muted)}
-.fd ul b{color:var(--ink);font-weight:500}
-@media (max-width:600px){.founders{grid-template-columns:1fr}}
+.path{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
+.path li{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+@media (max-width:600px){.path li{grid-template-columns:1fr;gap:2px}}
 .wl{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end}
 .wl h2{font-size:clamp(2.75rem,6vw,5.5rem);line-height:.95}
 form{display:flex;flex-direction:column;gap:14px}
@@ -570,46 +557,23 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
     <div class="wrap story">
       <div class="st-left">
         <span class="label">notre histoire</span>
-        <h2>deux amies, <span class="d">une même gorgée.</span></h2>
-        <div class="duo" aria-hidden="true">
-          <img src="assets/img/fondatrice-nisrine.jpg" alt="">
-          <img src="assets/img/fondatrice-loubna.jpg" alt="">
-        </div>
-        <div class="names">
-          <div><strong>Nisrine Margoum</strong><span>co-fondatrice</span></div>
-          <div><strong>Loubna Benmahmoud</strong><span>co-fondatrice</span></div>
-        </div>
+        <h2>née entre un labo <span class="d">et une cuisine de famille.</span></h2>
+        <figure class="me"><img src="assets/img/fondatrice-nisrine.jpg" alt="Portrait de Nisrine Margoum"><figcaption><strong>Nisrine Margoum</strong><span>fondatrice de straw.</span></figcaption></figure>
       </div>
       <div class="st-right">
-        <p class="lead">On se connaît depuis l'adolescence. Des années plus tard, on finit encore les phrases l'une de l'autre.</p>
-        <p><strong>Nisrine</strong>, c'est l'églantine, la rose sauvage. <strong>Loubna</strong>, c'est l'arbre dont on recueille une sève douce et parfumée. Une fleur et une sève : on aime dire que straw. était déjà écrit dans nos prénoms. Une paille, après tout, sert à faire monter ce qu'il y a de bon.</p>
-        <p>On a grandi ensemble, entre devoirs partagés, premières ambitions et longues soirées à refaire le monde. Et on a choisi la même porte d'entrée : la science. Toutes les deux, on est passées par un master Biologie-Santé, des heures à comprendre le corps avant de parler produit.</p>
-        <p>Ensuite, nos chemins ont pris des routes voisines. Nisrine a été cheffe de produit en cosmétique, à décortiquer les actifs et leurs promesses, puis s'est formée à l'entrepreneuriat et à l'innovation. Loubna est devenue cheffe de produit dans un laboratoire pharmaceutique, entre marketing, affaires réglementaires et force de vente. Et chacune de notre côté, on a organisé des congrès nationaux en santé.</p>
-        <p>Autour de nous, dans nos familles comme chez nos amies, on entendait toujours la même chose. Les enfants refusent le sirop. Les grands-parents peinent à avaler leurs gélules. Les mères parlent de leur ménopause à voix basse. Et nous, on oublie nos compléments au fond d'un placard. <strong>Le problème n'était pas l'actif. C'était le geste.</strong></p>
-        <p>Alors on a cherché un geste que tout le monde fait déjà, à tout âge : boire. straw. est né de là, à Clermont-Ferrand, avec la rigueur de la science, l'exigence du réglementaire, et l'envie de prendre soin de toute la famille, de 4 à 104 ans.</p>
-        <p class="sign">Nisrine &amp; Loubna</p>
-        <div class="founders">
-          <article class="fd">
-            <div class="fd-top"><img src="assets/img/fondatrice-nisrine.jpg" alt="Portrait de Nisrine Margoum"><div><strong>Nisrine Margoum</strong><span class="label">l'églantine</span></div></div>
-            <p class="fd-role">Co-fondatrice · produit, innovation &amp; formulation</p>
-            <p>Elle transforme une donnée scientifique en promesse claire, juste et autorisée. Elle pilote le développement des gammes et la relation avec le fabricant.</p>
-            <ul>
-              <li><b>Ancienne cheffe de produit</b> en cosmétique, ingrédients actifs</li>
-              <li><b>Master 2 Entrepreneuriat &amp; Innovation</b>, IAE Clermont-Auvergne</li>
-              <li><b>Master Biologie-Santé</b>, développement de produit</li>
-            </ul>
-          </article>
-          <article class="fd">
-            <div class="fd-top"><img src="assets/img/fondatrice-loubna.jpg" alt="Portrait de Loubna Benmahmoud"><div><strong>Loubna Benmahmoud</strong><span class="label">l'arbre à sève douce</span></div></div>
-            <p class="fd-role">Co-fondatrice · marketing, réglementaire &amp; commercial</p>
-            <p>Elle connaît le terrain : équipes marketing, affaires réglementaires, force de vente. Elle pilote la marque, la distribution et la conformité des allégations.</p>
-            <ul>
-              <li><b>Cheffe de produit</b> en laboratoire pharmaceutique (ophtalmologie), en filiale et au global</li>
-              <li><b>Master 2 Marketing &amp; Vente</b>, IAE Clermont-Auvergne</li>
-              <li><b>Master Biologie-Santé</b>, développement de produit pharmaceutique</li>
-            </ul>
-          </article>
-        </div>
+        <p class="lead">Je m'appelle Nisrine. Mon prénom veut dire églantine, la rose sauvage.</p>
+        <p>Une fleur qui pousse partout, sans rien demander de compliqué. J'aime l'idée que straw. lui ressemble : un geste simple, qui se glisse dans n'importe quel verre, à n'importe quel âge.</p>
+        <p>Mon point de départ, c'est la science. Un master Biologie-Santé, des heures à comprendre le corps avant de parler produit. Puis la cosmétique, où j'ai été cheffe de produit : décortiquer un actif, savoir à quelle dose il fonctionne, et le traduire en une promesse claire, juste et autorisée. J'ai ensuite choisi l'entrepreneuriat et l'innovation, avec un master 2 à l'IAE Clermont-Auvergne.</p>
+        <p>Autour de moi, dans ma famille comme chez mes amies, j'entendais toujours la même chose. Les enfants refusent le sirop. Les grands-parents peinent à avaler leurs gélules. Les mères parlent de leur ménopause à voix basse. Et on oublie tous nos compléments au fond d'un placard. <strong>Le problème n'était pas l'actif. C'était le geste.</strong></p>
+        <p>Alors j'ai cherché un geste que tout le monde fait déjà, à tout âge, dix fois par jour : boire. straw. est né de là, à Clermont-Ferrand, avec la rigueur de la science et l'envie de prendre soin de toute la famille, de 4 à 104 ans.</p>
+        <p class="sign">Nisrine</p>
+        <ol class="path">
+          <li><span class="label">la science</span><span>Master Biologie-Santé, développement de produit</span></li>
+          <li><span class="label">les actifs</span><span>Ancienne cheffe de produit en cosmétique, ingrédients actifs</span></li>
+          <li><span class="label">le terrain</span><span>Organisation de congrès nationaux en santé</span></li>
+          <li><span class="label">l'entreprise</span><span>Master 2 Entrepreneuriat &amp; Innovation, IAE Clermont-Auvergne</span></li>
+          <li><span class="label">2026</span><span>straw. la paille active, 4 gammes</span></li>
+        </ol>
         <div class="values">
           <div><b>la science d'abord</b><span>Chaque actif à sa dose, adaptée à l'âge. Seulement des allégations autorisées.</span></div>
           <div><b>le geste avant tout</b><span>Une routine qui tient, parce qu'elle ne demande rien en plus.</span></div>
