@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>straw. la paille active</title>
+<title>sip lab la paille active</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap">
@@ -79,9 +79,8 @@ section{padding-block:clamp(56px,8vw,112px)}
 .beads{display:inline-flex;gap:5px;vertical-align:middle}
 .beads i{width:9px;height:9px;border-radius:50%;background:var(--c,var(--ink))}
 .logo{font-weight:600;font-size:1.75rem;letter-spacing:-.05em;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:baseline;gap:.3em}
-.logo .dot{color:var(--sig);transition:color .5s}
+.wm{display:inline-flex;align-items:center;gap:.28em}.wm em{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em;font-size:1.12em}.mark{width:1.3em;height:1.3em;flex:none}
 .logo .sfx{font-size:.8em;letter-spacing:var(--disp-ls)}
-body[data-range="home"] .logo .dot{animation:dot 8s steps(1) infinite}
 @keyframes dot{0%{color:var(--s-mini)}25%{color:var(--s-active)}50%{color:var(--s-luna)}75%{color:var(--s-silver)}}
 
 /* ---- top ---- */
@@ -109,7 +108,7 @@ body[data-range="silver"] .mood figure:nth-child(even) .ph{transform:rotate(1.4d
   box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 22px 30px -18px rgba(31,28,25,.45)}
 .box::before{content:"";position:absolute;left:0;right:0;top:0;height:7%;border-bottom:1px solid currentColor;opacity:.25;background:rgba(255,255,255,.4);border-radius:inherit;border-bottom-left-radius:0;border-bottom-right-radius:0}
 .box .f{position:absolute;inset:11% 9% 7%;display:flex;flex-direction:column}
-.box .b{font:600 17cqw/1 var(--sans);letter-spacing:-.06em}
+.box .b{font:600 13cqw/1 var(--sans);letter-spacing:-.04em;white-space:nowrap}
 .box .rg{font:400 5cqw/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-top:3cqw;opacity:.8}
 .box .n{font-family:var(--disp);font-style:var(--disp-st);font-weight:var(--disp-w);font-variation-settings:var(--disp-fvs);font-size:13cqw;line-height:1;margin-top:auto;letter-spacing:var(--disp-ls)}
 .box .t{font:400 5.2cqw/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-top:4cqw;opacity:.85}
@@ -447,7 +446,7 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
 <div class="bar">maquette projet · prix, avis et compositions illustratifs</div>
 <nav class="top" aria-label="Navigation principale">
   <div class="wrap">
-    <a class="logo" href="#accueil" aria-label="straw. accueil"><span>straw<span class="dot">.</span></span><span class="sfx d" id="logoSfx"></span></a>
+    <a class="logo" href="#accueil" aria-label="sip lab, accueil"><span class="wm"><svg class="mark" viewBox="0 0 512 512" aria-hidden="true"><g transform="rotate(-14 256.00 262.00)"><circle cx="256.00" cy="395.00" r="33.06" fill="#2E9C9A"/><circle cx="256.00" cy="317.48" r="33.06" fill="#C8475A"/><circle cx="256.00" cy="239.96" r="33.06" fill="#D98A6C"/><circle cx="256.00" cy="162.44" r="33.06" fill="#F5B700"/><path d="M199.00 94.80 V395.00 A57.00 57.00 0 0 0 313.00 395.00 V94.80" fill="none" stroke="currentColor" stroke-width="17.10" stroke-linecap="round" stroke-linejoin="round"/><path d="M173.92 94.80 H338.08" fill="none" stroke="currentColor" stroke-width="17.10" stroke-linecap="round"/></g></svg><span>sip <em>lab</em></span></span><span class="sfx d" id="logoSfx"></span></a>
     <div class="rlinks" id="rlinks">
       <a href="#mini" style="--c:var(--s-mini)"><i></i>kids</a>
       <a href="#active" style="--c:var(--s-active)"><i></i>femme active</a>
@@ -478,14 +477,14 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
         </div>
         <div>
           <p>Des micro-billes d'actifs dans une paille, libérées à chaque gorgée. Pour les enfants, les femmes actives, la santé féminine et les seniors. Un seul geste pour toute la famille : boire.</p>
-          <div class="row"><a class="btn" href="#accueil-gammes">voir les 4 gammes</a><a class="btn ghost" href="#accueil-famille">une journée straw.</a></div>
+          <div class="row"><a class="btn" href="#accueil-gammes">voir les 4 gammes</a><a class="btn ghost" href="#accueil-famille">une journée sip lab</a></div>
         </div>
       </div>
       <div class="rooms" id="rooms">
-        <a class="room" href="#mini" style="--c:var(--s-mini)"><span class="rule"></span><img src="assets/img/mini-limonade.jpg" alt="Quatre enfants boivent une limonade avec des pailles rayées" style="object-position:40% 40%"><span class="cap"><span class="age">kids · 4 à 11 ans</span><span class="rn">straw. <em class="f-mini">mini</em></span><span class="more">Les vitamines à la paille, sans sucre ajouté, avec un tableau de stickers.</span></span></a>
-        <a class="room" href="#active" style="--c:var(--s-active)"><span class="rule"></span><img src="assets/img/active-hero.jpg" alt="Femme buvant un jus orange avec une paille" style="object-position:center 30%"><span class="cap"><span class="age">femme active · matin → soir</span><span class="rn">straw. <em class="f-active">active</em></span><span class="more">Matin, avant le sport, après le sport, sommeil. Une paille par moment.</span></span></a>
-        <a class="room" href="#luna" style="--c:var(--s-luna)"><span class="rule"></span><img src="assets/img/luna-fleurs.jpg" alt="Quatre femmes entourées de fleurs roses" style="object-position:center 30%"><span class="cap"><span class="age">santé féminine · cycle → ménopause</span><span class="rn">straw. <em class="f-luna">luna</em></span><span class="more">Règles, syndrome prémenstruel, projet bébé, ménopause.</span></span></a>
-        <a class="room" href="#silver" style="--c:var(--s-silver)"><span class="rule"></span><img src="assets/img/silver-plage.jpg" alt="Homme âgé en lunettes roses buvant à la paille sur la plage" style="object-position:center 25%"><span class="cap"><span class="age">senior · 65 ans et plus</span><span class="rn">straw. <em class="f-silver">silver</em></span><span class="more">Hydratation, tonus, mobilité, vision. Rien à avaler.</span></span></a>
+        <a class="room" href="#mini" style="--c:var(--s-mini)"><span class="rule"></span><img src="assets/img/mini-limonade.jpg" alt="Quatre enfants boivent une limonade avec des pailles rayées" style="object-position:40% 40%"><span class="cap"><span class="age">kids · 4 à 11 ans</span><span class="rn">sip lab <em class="f-mini">mini</em></span><span class="more">Les vitamines à la paille, sans sucre ajouté, avec un tableau de stickers.</span></span></a>
+        <a class="room" href="#active" style="--c:var(--s-active)"><span class="rule"></span><img src="assets/img/active-hero.jpg" alt="Femme buvant un jus orange avec une paille" style="object-position:center 30%"><span class="cap"><span class="age">femme active · matin → soir</span><span class="rn">sip lab <em class="f-active">active</em></span><span class="more">Matin, avant le sport, après le sport, sommeil. Une paille par moment.</span></span></a>
+        <a class="room" href="#luna" style="--c:var(--s-luna)"><span class="rule"></span><img src="assets/img/luna-fleurs.jpg" alt="Quatre femmes entourées de fleurs roses" style="object-position:center 30%"><span class="cap"><span class="age">santé féminine · cycle → ménopause</span><span class="rn">sip lab <em class="f-luna">luna</em></span><span class="more">Règles, syndrome prémenstruel, projet bébé, ménopause.</span></span></a>
+        <a class="room" href="#silver" style="--c:var(--s-silver)"><span class="rule"></span><img src="assets/img/silver-plage.jpg" alt="Homme âgé en lunettes roses buvant à la paille sur la plage" style="object-position:center 25%"><span class="cap"><span class="age">senior · 65 ans et plus</span><span class="rn">sip lab <em class="f-silver">silver</em></span><span class="more">Hydratation, tonus, mobilité, vision. Rien à avaler.</span></span></a>
       </div>
     </div>
   </header>
@@ -510,13 +509,13 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
     <div class="wrap family">
       <div class="ph"><img src="assets/img/mini-milkshake.jpg" alt="Une mère et son fils partagent un milkshake avec deux pailles rayées" style="object-position:center 60%"><span class="tag">camille & léo · 16:30</span></div>
       <div style="min-width:0">
-        <span class="label">une journée chez les straw.</span>
+        <span class="label">une journée chez les sip lab</span>
         <h2 style="font-size:clamp(2.1rem,4.4vw,3.75rem);line-height:1;margin-top:12px">quatre générations, <span class="d">une seule paille.</span></h2>
         <div class="gens">
-          <div style="--c:var(--s-mini)"><b>Léo, 7 ans</b><span>straw. mini</span></div>
-          <div style="--c:var(--s-active)"><b>Camille, 34 ans</b><span>straw. active</span></div>
-          <div style="--c:var(--s-luna)"><b>Nadia, 52 ans</b><span>straw. luna</span></div>
-          <div style="--c:var(--s-silver)"><b>Jean, 79 ans</b><span>straw. silver</span></div>
+          <div style="--c:var(--s-mini)"><b>Léo, 7 ans</b><span>sip lab mini</span></div>
+          <div style="--c:var(--s-active)"><b>Camille, 34 ans</b><span>sip lab active</span></div>
+          <div style="--c:var(--s-luna)"><b>Nadia, 52 ans</b><span>sip lab luna</span></div>
+          <div style="--c:var(--s-silver)"><b>Jean, 79 ans</b><span>sip lab silver</span></div>
         </div>
         <ol class="day" id="familyDay"></ol>
         <p class="label" style="margin-top:16px">famille fictive · exemple de routine</p>
@@ -540,7 +539,7 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
       <div class="head"><h2>pourquoi une paille ?</h2><p>Parce qu'un complément ne sert à rien s'il reste dans le placard. Le geste compte autant que l'actif.</p></div>
       <div class="tbl">
         <table class="cmp">
-          <thead><tr><th></th><th class="us">straw.</th><th>gélules</th><th>poudre en stick</th><th>gummies</th></tr></thead>
+          <thead><tr><th></th><th class="us">sip lab</th><th>gélules</th><th>poudre en stick</th><th>gummies</th></tr></thead>
           <tbody>
             <tr><th>à avaler</th><td class="us">rien, on boit</td><td>1 à 3 gélules</td><td>à diluer</td><td>à mâcher</td></tr>
             <tr><th>enfants & seniors</th><td class="us">même geste à tout âge</td><td>difficile à avaler</td><td>goût souvent refusé</td><td>sucre, risque de confusion avec un bonbon</td></tr>
@@ -558,21 +557,21 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
       <div class="st-left">
         <span class="label">notre histoire</span>
         <h2>née entre un labo <span class="d">et une cuisine de famille.</span></h2>
-        <figure class="me"><img src="assets/img/fondatrice-nisrine.jpg" alt="Portrait de Nisrine Margoum"><figcaption><strong>Nisrine Margoum</strong><span>fondatrice de straw.</span></figcaption></figure>
+        <figure class="me"><img src="assets/img/fondatrice-nisrine.jpg" alt="Portrait de Nisrine Margoum"><figcaption><strong>Nisrine Margoum</strong><span>fondatrice de sip lab</span></figcaption></figure>
       </div>
       <div class="st-right">
         <p class="lead">Je m'appelle Nisrine. Mon prénom veut dire églantine, la rose sauvage.</p>
-        <p>Une fleur qui pousse partout, sans rien demander de compliqué. J'aime l'idée que straw. lui ressemble : un geste simple, qui se glisse dans n'importe quel verre, à n'importe quel âge.</p>
+        <p>Une fleur qui pousse partout, sans rien demander de compliqué. J'aime l'idée que sip lab lui ressemble : un geste simple, qui se glisse dans n'importe quel verre, à n'importe quel âge.</p>
         <p>Mon point de départ, c'est la science. Un master Biologie-Santé, des heures à comprendre le corps avant de parler produit. Puis la cosmétique, où j'ai été cheffe de produit : décortiquer un actif, savoir à quelle dose il fonctionne, et le traduire en une promesse claire, juste et autorisée. J'ai ensuite choisi l'entrepreneuriat et l'innovation, avec un master 2 à l'IAE Clermont-Auvergne.</p>
         <p>Autour de moi, dans ma famille comme chez mes amies, j'entendais toujours la même chose. Les enfants refusent le sirop. Les grands-parents peinent à avaler leurs gélules. Les mères parlent de leur ménopause à voix basse. Et on oublie tous nos compléments au fond d'un placard. <strong>Le problème n'était pas l'actif. C'était le geste.</strong></p>
-        <p>Alors j'ai cherché un geste que tout le monde fait déjà, à tout âge, dix fois par jour : boire. straw. est né de là, à Clermont-Ferrand, avec la rigueur de la science et l'envie de prendre soin de toute la famille, de 4 à 104 ans.</p>
+        <p>Alors j'ai cherché un geste que tout le monde fait déjà, à tout âge, dix fois par jour : boire. sip lab est né de là, à Clermont-Ferrand, avec la rigueur de la science et l'envie de prendre soin de toute la famille, de 4 à 104 ans.</p>
         <p class="sign">Nisrine</p>
         <ol class="path">
           <li><span class="label">la science</span><span>Master Biologie-Santé, développement de produit</span></li>
           <li><span class="label">les actifs</span><span>Ancienne cheffe de produit en cosmétique, ingrédients actifs</span></li>
           <li><span class="label">le terrain</span><span>Organisation de congrès nationaux en santé</span></li>
           <li><span class="label">l'entreprise</span><span>Master 2 Entrepreneuriat &amp; Innovation, IAE Clermont-Auvergne</span></li>
-          <li><span class="label">2026</span><span>straw. la paille active, 4 gammes</span></li>
+          <li><span class="label">2026</span><span>sip lab la paille active, 4 gammes</span></li>
         </ol>
         <div class="values">
           <div><b>la science d'abord</b><span>Chaque actif à sa dose, adaptée à l'âge. Seulement des allégations autorisées.</span></div>
@@ -619,7 +618,7 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
   <header class="rhero">
     <div class="ph"><img src="assets/img/mini-limonade.jpg" alt="Quatre enfants boivent une limonade avec des pailles rayées" style="object-position:40% 40%"><span class="tag">boost. · fraise</span></div>
     <div class="rhero-copy">
-      <span class="label">straw. mini · kids · 4 à 11 ans</span>
+      <span class="label">sip lab mini · kids · 4 à 11 ans</span>
       <h1>les vitamines, <span class="d">à la paille !</span></h1>
       <p>Fini la bataille du sirop. Une paille rayée dans le verre de lait, et les vitamines passent toutes seules. Côté parents : doses adaptées aux 4–11 ans, sans sucre ajouté, sans colorant artificiel.</p>
       <div class="row"><a class="btn" href="#mini-shop">les 4 pailles mini</a><a class="btn ghost" href="#mini-stickers">le tableau de stickers</a></div>
@@ -681,7 +680,7 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
   <header class="rhero">
     <div class="ph"><img src="assets/img/active-hero.jpg" alt="Femme buvant un jus orange avec une paille" style="object-position:center 30%"><span class="tag">rise. · pêche & citron</span></div>
     <div class="rhero-copy">
-      <span class="label">straw. active · femme active · matin, sport, soir</span>
+      <span class="label">sip lab active · femme active · matin, sport, soir</span>
       <h1>sip your <span class="d">routine.</span></h1>
       <p>Une paille au réveil, une avant la séance, une après, une le soir. Ta boisson ne change pas, ta routine si.</p>
       <div class="row"><a class="btn" href="#active-shop">découvrir les 4 pailles</a><a class="btn ghost" href="#active-routine">voir la journée</a></div>
@@ -695,7 +694,7 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
     <div><b>dès 0,94 € la paille</b>en abonnement</div>
   </div></div>
   <section id="active-routine"><div class="wrap">
-    <div class="head"><h2>une journée <span class="d">straw.</span></h2><p>Rise et sleep tous les jours. Pulse et move les jours de séance. Dans la boisson que tu bois déjà.</p></div>
+    <div class="head"><h2>une journée <span class="d">sip lab</span></h2><p>Rise et sleep tous les jours. Pulse et move les jours de séance. Dans la boisson que tu bois déjà.</p></div>
     <div class="routine" id="routineGrid"></div>
   </div></section>
   <section id="active-shop" style="padding-top:0"><div class="wrap">
@@ -708,11 +707,11 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
     <div class="offers" data-offers="active"></div>
   </div></section>
   <section class="alt"><div class="wrap">
-    <div class="head"><h2>le rituel <span class="d">straw.</span></h2><span class="mock">moodboard · photos non libres de droits</span></div>
+    <div class="head"><h2>le rituel <span class="d">sip lab</span></h2><span class="mock">moodboard · photos non libres de droits</span></div>
     <div class="mood">
       <figure><div class="ph"><img src="assets/img/active-masque.jpg" alt="Femme en peignoir avec un masque, buvant avec une paille" style="object-position:center 35%"></div><figcaption><span class="label">7:30</span><strong>mask on, glow in</strong><span>rise. dans le matcha du matin.</span></figcaption></figure>
       <figure><div class="ph"><img src="assets/img/active-soleil.jpg" alt="Femme au soleil buvant un jus orange avec une paille"></div><figcaption><span class="label">18:00</span><strong>after the class</strong><span>move. dans ta gourde.</span></figcaption></figure>
-      <figure><div class="ugc"><span class="label">22:30</span><b>ta photo ici</b><span>Partage ta routine avec #mystrawroutine. Les meilleures photos rejoignent ce moodboard.</span></div><figcaption><span class="label">communauté</span><strong>sleep. dans ton infusion</strong><span>La dernière gorgée de la journée.</span></figcaption></figure>
+      <figure><div class="ugc"><span class="label">22:30</span><b>ta photo ici</b><span>Partage ta routine avec #mysiplabroutine. Les meilleures photos rejoignent ce moodboard.</span></div><figcaption><span class="label">communauté</span><strong>sleep. dans ton infusion</strong><span>La dernière gorgée de la journée.</span></figcaption></figure>
     </div>
   </div></section>
   <section><div class="wrap">
@@ -727,7 +726,7 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
   <header class="rhero">
     <div class="ph"><img src="assets/img/luna-fleurs.jpg" alt="Quatre femmes entourées de fleurs roses" style="object-position:center 30%"><span class="tag">balance. · rose & litchi</span></div>
     <div class="rhero-copy">
-      <span class="label">straw. luna · santé féminine</span>
+      <span class="label">sip lab luna · santé féminine</span>
       <h1>ton cycle, <span class="d">à chaque gorgée.</span></h1>
       <p>Règles, syndrome prémenstruel, projet bébé, ménopause. Quatre pailles pour les grandes phases du corps féminin. On ne promet rien que la science n'autorise : seulement des allégations de santé validées.</p>
       <div class="row"><a class="btn" href="#luna-cycle">trouver ma paille</a><a class="btn ghost" href="#luna-shop">les 4 pailles luna</a></div>
@@ -789,7 +788,7 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
     <div class="ph"><img src="assets/img/silver-plage.jpg" alt="Homme âgé en lunettes roses buvant à la paille sur la plage" style="object-position:center 25%"><span class="tag">hydra. · citron & menthe</span></div>
     <div class="rhero-copy">
       <div class="sizes"><span class="label">taille du texte</span><div class="seg" id="sizeSeg" role="group" aria-label="Taille du texte"><button type="button" data-size="1" aria-pressed="true">A</button><button type="button" data-size="1.125" aria-pressed="false">A+</button><button type="button" data-size="1.25" aria-pressed="false">A++</button></div></div>
-      <span class="label">straw. silver · senior · 65 ans et plus</span>
+      <span class="label">sip lab silver · senior · 65 ans et plus</span>
       <h1>jeune depuis <span class="d">longtemps.</span></h1>
       <p>Pas de gélule à avaler, pas de pilulier à remplir. Une paille dans le verre d'eau ou le jus du matin, et vos vitamines sont prises. En prime, vous buvez un grand verre, ce dont le corps a besoin avec l'âge.</p>
       <div class="row"><a class="btn" href="#silver-shop">les 4 pailles silver</a><a class="btn ghost" href="#silver-eau">le compteur d'eau</a></div>
@@ -812,7 +811,7 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
     <div style="min-width:0">
       <span class="label">la signature silver</span>
       <h2 style="margin-top:12px">avec l'âge, <span class="d">on oublie de boire.</span></h2>
-      <p>La sensation de soif diminue avec les années, alors que le corps a toujours besoin d'environ 1,5 litre d'eau par jour. Chaque paille straw. silver est parfumée et se boit dans un grand verre : deux pailles, c'est déjà un tiers de l'objectif.</p>
+      <p>La sensation de soif diminue avec les années, alors que le corps a toujours besoin d'environ 1,5 litre d'eau par jour. Chaque paille sip lab silver est parfumée et se boit dans un grand verre : deux pailles, c'est déjà un tiers de l'objectif.</p>
       <p class="label">essayez : touchez un verre pour le remplir</p>
       <div class="glasses" id="glasses"></div>
       <div class="hcount" id="hcount" aria-live="polite"></div>
@@ -847,9 +846,9 @@ footer p{margin:0;color:var(--muted);font-size:.8125rem;max-width:72ch}
 <div class="stripe" aria-hidden="true"></div>
 <footer>
   <div class="wrap">
-    <span class="logo">straw<span class="dot">.</span></span>
+    <span class="logo"><span class="wm"><svg class="mark" viewBox="0 0 512 512" aria-hidden="true"><g transform="rotate(-14 256.00 262.00)"><circle cx="256.00" cy="395.00" r="33.06" fill="#2E9C9A"/><circle cx="256.00" cy="317.48" r="33.06" fill="#C8475A"/><circle cx="256.00" cy="239.96" r="33.06" fill="#D98A6C"/><circle cx="256.00" cy="162.44" r="33.06" fill="#F5B700"/><path d="M199.00 94.80 V395.00 A57.00 57.00 0 0 0 313.00 395.00 V94.80" fill="none" stroke="currentColor" stroke-width="17.10" stroke-linecap="round" stroke-linejoin="round"/><path d="M173.92 94.80 H338.08" fill="none" stroke="currentColor" stroke-width="17.10" stroke-linecap="round"/></g></svg><span>sip <em>lab</em></span></span></span>
     <div>
-      <div class="ftl"><a href="#mini">straw. mini</a><a href="#active">straw. active</a><a href="#luna">straw. luna</a><a href="#silver">straw. silver</a><a href="#accueil-histoire">notre histoire</a></div>
+      <div class="ftl"><a href="#mini">sip lab mini</a><a href="#active">sip lab active</a><a href="#luna">sip lab luna</a><a href="#silver">sip lab silver</a><a href="#accueil-histoire">notre histoire</a></div>
       <p>Clermont-Ferrand, France. Compléments alimentaires. Ne pas dépasser la dose journalière recommandée. Ne se substituent pas à une alimentation variée et équilibrée et à un mode de vie sain. Tenir hors de portée des jeunes enfants. Maquette de projet étudiant : prix, avis et compositions illustratifs, à valider avec le fabricant et un expert réglementaire avant toute commercialisation.</p>
     </div>
   </div>
@@ -978,7 +977,7 @@ const RANGES={
 const ORDER=['mini','active','luna','silver'];
 const allP=r=>RANGES[r].products;
 
-const box=(p,r)=>`<div class="box" style="--c:${p.c};--pk:${p.pk}"><span class="str"></span><div class="f"><span class="b">straw.</span><span class="rg">${RANGES[r].name}</span><span class="n">${p.name}</span><span class="t">${p.flavor}</span><div class="ft"><span>7 jours</span><span>${p.moment}</span></div></div></div>`;
+const box=(p,r)=>`<div class="box" style="--c:${p.c};--pk:${p.pk}"><span class="str"></span><div class="f"><span class="b">sip lab</span><span class="rg">${RANGES[r].name}</span><span class="n">${p.name}</span><span class="t">${p.flavor}</span><div class="ft"><span>7 jours</span><span>${p.moment}</span></div></div></div>`;
 const boxFor=(p,r)=>`<div class="${RANGES[r].font}-wrap" style="--disp:${fontOf(r)};--disp-st:${stOf(r)};--disp-w:${wOf(r)};--disp-fvs:${fvsOf(r)};display:contents">${box(p,r)}</div>`;
 function fontOf(r){return {mini:"'Lilita One',sans-serif",active:"'Instrument Serif',serif",luna:"'Bodoni Moda',serif",silver:"'Fraunces',serif"}[r]}
 function stOf(r){return r==='mini'?'normal':'italic'}
@@ -990,11 +989,11 @@ const straw=p=>`<div class="straw" style="--c:${p.c}"><i></i><i></i><i></i><i></
 /* ---------- home ---------- */
 $('lineup').innerHTML=ORDER.map(r=>{const R=RANGES[r],ps=R.products;return `<a class="lu" href="#${r}">
  <div class="stage">${boxFor(ps[0],r)}${boxFor(ps[1],r)}${boxFor(ps[3],r)}</div>
- <h3><span>straw.</span><span class="${R.font}" style="font-weight:${wOf(r)}">${R.name}</span></h3>
+ <h3><span>sip lab</span><span class="${R.font}" style="font-weight:${wOf(r)}">${R.name}</span></h3>
  <span class="label">${R.who}</span>
  <p>${ps.map(p=>p.name).join(' · ')}</p><span class="go">découvrir la gamme</span></a>`}).join('');
 const FAM=[['07:30','Camille','rise. dans son matcha glacé','active'],['07:45','Léo','boost. dans son bol de lait','mini'],['08:30','Jean','tonus. dans son jus d\'orange','silver'],['10:00','Nadia','meno. dans son lait d\'avoine','luna'],['12:30','Jean','hydra. dans un grand verre d\'eau','silver'],['16:30','Léo','grow. au goûter, avec maman','mini'],['18:30','Camille','move. dans sa gourde, après le pilates','active'],['20:15','Léo','dodo. avant l\'histoire du soir','mini'],['22:30','Camille','sleep. dans son infusion','active']];
-$('familyDay').innerHTML=FAM.map(([t,w,s,r])=>`<li><time>${t}</time><span class="bd" style="--c:${RANGES[r].sig}"></span><span class="who"><b>${w}</b> <span>· ${s}</span></span><span class="rg">straw. ${RANGES[r].name}</span></li>`).join('');
+$('familyDay').innerHTML=FAM.map(([t,w,s,r])=>`<li><time>${t}</time><span class="bd" style="--c:${RANGES[r].sig}"></span><span class="who"><b>${w}</b> <span>· ${s}</span></span><span class="rg">sip lab ${RANGES[r].name}</span></li>`).join('');
 
 /* ---------- range views ---------- */
 ORDER.forEach(r=>{
@@ -1008,7 +1007,7 @@ ORDER.forEach(r=>{
   document.querySelector(`[data-offers="${r}"]`).innerHTML=R.offers.map(o=>`<div class="offer${o.hl?' hl':''}"><span class="label">${o.l}</span><div class="amt">${o.a} <small>${o.s}</small></div><span class="unit">${o.u}</span><p>${o.p}</p><a class="btn${o.hl?'':' ghost'}" href="#accueil-liste">${o.b}</a></div>`).join('');
   document.querySelector(`[data-offers="${r}"]`).closest('section').id=r+'-offres';
   document.querySelector(`[data-revs="${r}"]`).innerHTML=R.revs.map(v=>`<article class="rev"><span class="st" aria-label="${v[0]} sur 5">${'★'.repeat(+v[0])}${'☆'.repeat(5-v[0])}</span><q>${v[1]}</q><div class="who"><span>${v[2]}</span><span>${v[3]}</span></div></article>`).join('');
-  document.querySelector(`[data-others="${r}"]`).innerHTML=ORDER.filter(x=>x!==r).map(x=>{const O=RANGES[x];return `<a class="other" href="#${x}"><div class="ph" style="border-radius:6px"><img src="${O.img}" alt=""></div><div style="min-width:0"><b>straw. <span class="${O.font}" style="font-weight:${wOf(x)};letter-spacing:0">${O.name}</span></b><span class="label" style="display:block;margin:4px 0">${O.who}</span><span>${O.tag}</span></div></a>`}).join('');
+  document.querySelector(`[data-others="${r}"]`).innerHTML=ORDER.filter(x=>x!==r).map(x=>{const O=RANGES[x];return `<a class="other" href="#${x}"><div class="ph" style="border-radius:6px"><img src="${O.img}" alt=""></div><div style="min-width:0"><b>sip lab <span class="${O.font}" style="font-weight:${wOf(x)};letter-spacing:0">${O.name}</span></b><span class="label" style="display:block;margin:4px 0">${O.who}</span><span>${O.tag}</span></div></a>`}).join('');
   mountFiche(r);
 });
 
@@ -1042,7 +1041,7 @@ function mountFiche(r){
     root.querySelectorAll('[data-pick]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.pick===i)));
     q('.visual').innerHTML=`<div class="set">${box(p,r)}${sachet(p)}${straw(p)}</div>`;
     f('moment').textContent=`${p.moment} · ${p.topic}`;
-    f('name').innerHTML=`straw <span class="d">${p.name}</span>`;
+    f('name').innerHTML=`sip lab <span class="d">${p.name}</span>`;
     f('pitch').textContent=p.pitch;f('flavor').textContent=p.flavor;f('drink').textContent=p.drink;f('price').textContent=`${R.price} · 7 pailles`;
     panel();
   }
@@ -1055,10 +1054,10 @@ function mountFiche(r){
 }
 
 /* active: routine */
-$('routineGrid').innerHTML=allP('active').map(p=>`<article class="moment"><div class="time"><b>${p.time}</b><span class="label">${p.moment}</span></div><div class="stage">${box(p,'active')}</div><h3>straw ${p.name}</h3><p>${p.pitch}</p></article>`).join('');
+$('routineGrid').innerHTML=allP('active').map(p=>`<article class="moment"><div class="time"><b>${p.time}</b><span class="label">${p.moment}</span></div><div class="stage">${box(p,'active')}</div><h3>sip lab ${p.name}</h3><p>${p.pitch}</p></article>`).join('');
 
 /* storage helpers (per-viewer convenience only) */
-const store={get(k,d){try{const v=localStorage.getItem('straw.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('straw.'+k,JSON.stringify(v))}catch(e){}}};
+const store={get(k,d){try{const v=localStorage.getItem('sip lab'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('sip lab'+k,JSON.stringify(v))}catch(e){}}};
 
 /* mini: stickers */
 (function(){
@@ -1080,7 +1079,7 @@ const store={get(k,d){try{const v=localStorage.getItem('straw.'+k);return v==nul
   const L=RANGES.luna.products;
   const PH=[
    {from:1,to:5,name:'phase menstruelle',c:L[0].c,txt:'Les règles. Le corps perd du sang, donc du fer, et la fatigue se fait souvent sentir ces jours-là.',p:0},
-   {from:6,to:13,name:'phase folliculaire',c:'#F3C6B8',txt:'Les œstrogènes remontent, l\'énergie aussi. Pas besoin de paille luna : si tu veux un coup de pouce, c\'est le moment de straw rise.',p:null},
+   {from:6,to:13,name:'phase folliculaire',c:'#F3C6B8',txt:'Les œstrogènes remontent, l\'énergie aussi. Pas besoin de paille luna : si tu veux un coup de pouce, c\'est le moment de sip lab rise.',p:null},
    {from:14,to:14,name:'ovulation',c:L[2].c,txt:'L\'ovulation, autour du 14e jour sur un cycle de 28 jours. En projet bébé, bloom. se prend tous les jours, quelle que soit la phase.',p:2},
    {from:15,to:28,name:'phase lutéale',c:L[1].c,txt:'La progestérone prend le relais. Ballonnements, humeur en dents de scie, envies de sucre : le syndrome prémenstruel arrive souvent en fin de phase.',p:1}];
   const phaseOf=d=>PH.find(x=>d>=x.from&&d<=x.to);
@@ -1102,7 +1101,7 @@ const store={get(k,d){try{const v=localStorage.getItem('straw.'+k);return v==nul
     $('wDay').textContent=d;
     const pr=ph.p==null?null:L[ph.p];
     $('phase').innerHTML=`<span class="label">jour ${d} · J${ph.from}${ph.to!==ph.from?' à J'+ph.to:''}</span><h3>${ph.name}</h3><p>${ph.txt}</p>`+
-     (pr?`<div class="reco">${box(pr,'luna')}<div><span class="label">ta paille</span><br><b>straw ${pr.name}</b> · ${pr.flavor}</div></div>`:`<a class="reco" href="#active" style="text-decoration:none">${boxFor(RANGES.active.products[0],'active')}<div><span class="label">côté straw. active</span><br><b>straw rise.</b> · pêche & citron</div></a>`)+
+     (pr?`<div class="reco">${box(pr,'luna')}<div><span class="label">ta paille</span><br><b>sip lab ${pr.name}</b> · ${pr.flavor}</div></div>`:`<a class="reco" href="#active" style="text-decoration:none">${boxFor(RANGES.active.products[0],'active')}<div><span class="label">côté sip lab active</span><br><b>sip lab rise.</b> · pêche & citron</div></a>`)+
      `<div class="legend">${PH.map(x=>`<span style="--c:${x.c}"><i></i>${x.name}</span>`).join('')}</div><p class="label" style="margin-top:16px">chaque cycle est différent : de 21 à 35 jours selon les femmes</p>`;
   }
   $('wheel').addEventListener('click',e=>{const p=e.target.closest('[data-day]');if(p)pick(+p.dataset.day)});
@@ -1133,7 +1132,7 @@ $('wl-form').addEventListener('submit',e=>{
   e.preventDefault();
   const v=$('wl-email').value.trim();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){$('wl-err').textContent='Entre une adresse email valide, par exemple toi@exemple.com.';return;}
-  const picked=ORDER.filter(r=>$('wl-'+r).checked).map(r=>'straw. '+RANGES[r].name);
+  const picked=ORDER.filter(r=>$('wl-'+r).checked).map(r=>'sip lab '+RANGES[r].name);
   $('wl-okmsg').textContent=(picked.length?`Gammes suivies : ${picked.join(', ')}. `:'')+'Ton code −15 % arrive au lancement.';
   $('wl-form').hidden=true;$('wl-ok').hidden=false;
 });
