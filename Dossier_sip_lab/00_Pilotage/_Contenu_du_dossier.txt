@@ -1,0 +1,3 @@
+Pilotage du projet.
+- Pilotage_sip_lab.xlsx : Gantt (à mettre à jour chaque lundi) + inventaire des documents
+- Feuille_de_route_sip_lab.docx : étapes du projet, ce qui manque, comment le faire
